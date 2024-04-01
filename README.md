@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/Carlos-93/angular17-routing-services-forms/master/src/img/angular17.png" width="300">
+<img src="https://raw.githubusercontent.com/Carlos-93/angular17-routing-services-forms/master/src/assets/img/angular17.png" width="300">
 
 # Welcome to my Angular 17 website
 
