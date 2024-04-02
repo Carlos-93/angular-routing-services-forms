@@ -1,1 +1,72 @@
-<p>footer works!</p>
+<!-- Componente Footer -->
+<footer class="footer_shadow bg-slate-100">
+  <div class="mx-auto w-full max-w-screen-xl p-4 py-4 lg:py-6">
+    <div class="md:flex justify-between">
+
+      <!-- Logo de Angular con interpolación -->
+      <div class="mb-10">
+        <a href="https://angular.io/" class="flex items-center justify-center">
+          <img src="{{ logo }}" class="footer_logo w-60 md:w-72 lg:w-80 me-3" alt="Angular Logo" />
+        </a>
+      </div>
+
+      <!-- Links de navegación con interpolación -->
+      <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+        <div>
+          <h2 class="mb-6 text-sm font-semibold text-pink-700 uppercase cursor-default">Resources
+          </h2>
+          <ul class="text-gray-500 font-medium">
+            <li class="mb-4" *ngFor="let link of resourcesLinks">
+              <a href="{{ link.url }}"
+                class="hover:text-pink-600 transition-all ease-in-out duration-300 text-xs lg:text-sm">
+                {{ link.name }}
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Seguimiento de la comunidad con interpolación -->
+        <div>
+          <h2 class="mb-6 text-sm font-semibold text-pink-700 uppercase cursor-default">Follow us</h2>
+          <ul class="text-gray-500 font-medium">
+            <li class="mb-4" *ngFor="let link of trackingLinks">
+              <a href="{{ link.url }}"
+                class="hover:text-pink-600 transition-all ease-in-out duration-300 text-xs lg:text-sm">
+                {{ link.name }}
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Aspectos legales con interpolación -->
+        <div>
+          <h2 class="mb-6 text-sm font-semibold text-pink-700 uppercase cursor-default">Legal</h2>
+          <ul class="text-gray-500 font-medium">
+            <li class="mb-4" *ngFor="let legal of legalLinks">
+              <a href="{{ legal.url }}"
+                class="hover:text-pink-600 transition-all ease-in-out duration-300 text-xs lg:text-sm">{{
+                legal.name }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Separador -->
+    <hr class="my-6 border-pink-700 sm:mx-auto lg:my-8" />
+
+    <div class="sm:flex sm:items-center sm:justify-between">
+      <!-- Derechos de autor con interpolación -->
+      <span class="text-gray-500 cursor-default font-medium sm:text-center text-xs lg:text-sm">© {{ year }}
+        <a class="hover:text-pink-600 transition-all ease-in-out duration-300">{{ username }}</a> / {{ copyright }}
+      </span>
+
+      <!-- Redes sociales con interpolación -->
+      <div class="flex mt-4 sm:justify-center sm:mt-0 gap-5">
+        <a *ngFor="let social of socialLinks" href="{{ social.url }}">
+          <img src="{{ social.icon }}" class="w-6" alt="{{ social.name }} account" />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
