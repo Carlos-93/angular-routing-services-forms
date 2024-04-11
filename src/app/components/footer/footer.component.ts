@@ -12,7 +12,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 export class FooterComponent {
 
   // Propiedad para el logo del footer
-  logo: string = "/assets/img/angular17.png";
+  logo: string = "/assets/images/angular17.png";
 
   // Propiedad para el año actual de la página
   year: number = new Date().getFullYear();
@@ -43,10 +43,10 @@ export class FooterComponent {
 
   // Array de objetos con los enlaces de mis redes sociales
   socialLinks = [
-    { name: "Facebook", url: "https://www.facebook.com/carlos.araujo.bcn", icon: "/assets/img/facebook.png" },
-    { name: "Instagram", url: "https://www.instagram.com/carloos_93/", icon: "/assets/img/instagram.png" },
-    { name: "Github", url: "https://github.com/Carlos-93", icon: "/assets/img/github.png" },
-    { name: "Linkedin", url: "https://www.linkedin.com/in/carlos-araujo-galvan/", icon: "/assets/img/linkedin.png" },
-    { name: "YouTube", url: "https://www.youtube.com/channel/UCdJ7371WOCb_XfPEv-Cm3Yw", icon: "/assets/img/youtube.png" }
+    { name: "Facebook", url: "https://www.facebook.com/carlos.araujo.bcn", icon: "/assets/images/facebook.png" },
+    { name: "Instagram", url: "https://www.instagram.com/carloos_93/", icon: "/assets/images/instagram.png" },
+    { name: "Github", url: "https://github.com/Carlos-93", icon: "/assets/images/github.png" },
+    { name: "Linkedin", url: "https://www.linkedin.com/in/carlos-araujo-galvan/", icon: "/assets/images/linkedin.png" },
+    { name: "YouTube", url: "https://www.youtube.com/channel/UCdJ7371WOCb_XfPEv-Cm3Yw", icon: "/assets/images/youtube.png" }
   ];
 }

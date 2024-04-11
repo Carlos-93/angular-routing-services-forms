@@ -17,3 +17,24 @@
         display: none;
     }
 }
+
+form,
+input,
+textarea,
+select,
+button,
+label {
+    font-family: inherit;
+    font-size: inherit;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+    background-color: transparent;
+    color: inherit;
+    display: block;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    resize: none
+}
