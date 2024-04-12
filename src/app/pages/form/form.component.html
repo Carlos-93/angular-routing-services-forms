@@ -1,74 +1,111 @@
 <!-- Form Page -->
-<h1 class="text-4xl text-center my-10">Add Apple Product</h1>
+<h1 class="text-4xl text-center my-10">Admin Dashboard</h1>
 
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="max-w-xl mx-auto p-5 space-y-8 text-sm">
-  <!-- Número de referencia -->
-  <div class="flex items-center gap-5">
-    <label for="reference" class="flex justify-end font-medium w-52">Reference Number :</label>
-    <input type="text" id="reference" matInput name="reference" formControlName="reference"
-      placeholder="Enter the reference number" autocomplete="off"
-      class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
+<!-- Container -->
+<div class="flex justify-center gap-10 bg-blue-700">
+
+  <!-- Product List -->
+  <div class="flex flex-col items-center w-[50rem] bg-yellow-600">
+    <h2 class="text-2xl text-center mb-10">Product List</h2>
+    <div class="flex flex-col gap-5 text-sm w-[25rem]">
+
+      <!-- Search Product -->
+      <div class="flex flex-col gap-2">
+        <label for="search" class="font-medium">Search Product</label>
+        <input type="text" id="search" matInput name="search" placeholder="Search for a product"
+          class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
+      </div>
+
+      <!-- Sort Product -->
+      <div class="flex flex-col gap-2">
+        <label for="sort" class="font-medium">Sort By</label>
+        <select id="sort" matInput name="sort"
+          class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
+          <option disabled selected>Sort by</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+          <option>Product Name: A to Z</option>
+          <option>Product Name: Z to A</option>
+        </select>
+      </div>
+    </div>
   </div>
 
-  <!-- Nombre del producto -->
-  <div class="flex items-center gap-5">
-    <label for="name" class="flex justify-end font-medium w-52">Product Name :</label>
-    <input type="text" id="name" matInput name="name" formControlName="name" placeholder="Enter the product name"
-      autocomplete="off" class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
-  </div>
+  <!-- Product Form -->
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()"
+    class="flex flex-col items-center w-[50rem] text-sm bg-red-600">
+    <h2 class="text-2xl text-center mb-10">Add Product</h2>
+    <div class="flex flex-col gap-5 text-sm w-[25rem]">
 
-  <!-- Precio -->
-  <div class="flex items-center gap-5">
-    <label for="price" class="flex justify-end font-medium w-52">Price :</label>
-    <input type="number" id="price" matInput name="price" formControlName="price" placeholder="Enter the price"
-      autocomplete="off" class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
-  </div>
+      <!-- Número de referencia -->
+      <div class="flex flex-col gap-2">
+        <label for="reference" class="font-medium">Reference Number</label>
+        <input type="text" id="reference" matInput name="reference" formControlName="reference"
+          placeholder="Enter the reference number" autocomplete="off"
+          class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
+      </div>
 
-  <!-- Descripción -->
-  <div class="flex items-center gap-5">
-    <label for="description" class="flex justify-end font-medium w-52">Description :</label>
-    <textarea id="description" matInput name="description" formControlName="description" rows="5"
-      placeholder="Enter the product description" autocomplete="off"
-      class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600"></textarea>
-  </div>
+      <!-- Nombre del producto -->
+      <div class="flex flex-col gap-2">
+        <label for="name" class="font-medium">Product Name</label>
+        <input type="text" id="name" matInput name="name" formControlName="name" placeholder="Enter the product name"
+          autocomplete="off" class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
+      </div>
 
-  <!-- Tipo de producto -->
-  <div class="flex items-center gap-5">
-    <label for="type" class="flex justify-end font-medium w-52">Product Type :</label>
-    <select id="type" matInput name="type" autocomplete="off"
-      class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
-      <option disabled selected>Select product type</option>
-      <option>Mac</option>
-      <option>iPad</option>
-      <option>iPhone</option>
-      <option>Watch</option>
-      <option>AirPods</option>
-    </select>
-  </div>
+      <!-- Precio -->
+      <div class="flex flex-col gap-2">
+        <label for="price" class="font-medium">Price</label>
+        <input type="number" id="price" matInput name="price" formControlName="price" placeholder="Enter the price"
+          autocomplete="off" class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
+      </div>
 
-  <!-- Oferta de producto -->
-  <div class="flex items-center gap-5">
-    <label for="offer" class="flex justify-end font-medium w-36 cursor-pointer">Product On Offer :</label>
-    <input id="offer" matInput name="offer" formControlName="offer" type="checkbox"
-      class="h-5 w-5 rounded border-2 focus:border-rose-600 focus:ring-rose-600 checked:bg-rose-500 cursor-pointer">
-  </div>
+      <!-- Descripción -->
+      <div class="flex flex-col gap-2">
+        <label for="description" class="font-medium">Description</label>
+        <textarea id="description" matInput name="description" formControlName="description" rows="5"
+          placeholder="Enter the product description" autocomplete="off"
+          class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600"></textarea>
+      </div>
 
-  <!-- Agregar imagen de producto -->
-  <div class="flex items-center gap-5">
-    <label for="image" class="flex justify-end font-medium w-52">Product Image :</label>
-    <input type="file" id="image" matInput name="image" formControlName="image" autocomplete="off"
-      class="flex w-full text-gray-900 file:rounded-md file:border-gray-300 file:bg-gray-100 file:px-4 file:p-2 file:shadow-sm file:focus:border-rose-600 file:focus:ring-rose-600 cursor-pointer">
-  </div>
+      <!-- Tipo de producto -->
+      <div class="flex flex-col gap-2">
+        <label for="type" class="font-medium">Product Type</label>
+        <select id="type" matInput formControlName="type" autocomplete="off"
+          class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
+          <option disabled selected>Select product type</option>
+          <option>Mac</option>
+          <option>iPad</option>
+          <option>iPhone</option>
+          <option>Watch</option>
+          <option>AirPods</option>
+        </select>
+      </div>
 
-  <!-- Botón de envío -->
-  <div class="flex justify-end items-center pt-5">
-    <button type="submit" [disabled]="productForm.invalid"
-      class="p-2.5 px-6 border-transparent shadow-sm font-medium rounded-md text-white bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-600">
-      Add Product
-    </button>
-    <button type="reset"
-      class="p-2.5 px-6 border-transparent shadow-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 ml-3">
-      Clear Fields
-    </button>
-  </div>
-</form>
+      <!-- Oferta de producto -->
+      <div class="flex items-center gap-2">
+        <label for="offer" class="font-medium cursor-pointer">Product On Offer</label>
+        <input id="offer" matInput name="offer" formControlName="offer" type="checkbox"
+          class="h-5 w-5 rounded border-2 focus:border-rose-600 focus:ring-rose-600 checked:bg-rose-500 cursor-pointer">
+      </div>
+
+      <!-- Agregar imagen de producto -->
+      <div class="flex flex-col gap-2">
+        <label for="image" class="font-medium">Product Image</label>
+        <input type="file" id="image" matInput name="image" formControlName="image" autocomplete="off"
+          class="flex w-full text-gray-700 file:rounded-md file:border-gray-300 file:bg-gray-100 file:px-4 file:p-2 file:shadow-sm file:focus:border-rose-600 file:focus:ring-rose-600 cursor-pointer">
+      </div>
+
+      <!-- Botón de envío -->
+      <div class="flex justify-end items-center pt-5">
+        <button type="submit" [disabled]="productForm.invalid"
+          class="p-2.5 px-6 border-transparent shadow-sm font-medium rounded-md text-white bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-600">
+          Add Product
+        </button>
+        <button type="reset"
+          class="p-2.5 px-6 border-transparent shadow-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 ml-3">
+          Clear Fields
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

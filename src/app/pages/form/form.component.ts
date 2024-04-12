@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 
@@ -16,7 +17,7 @@ export interface product {
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css']
 })
@@ -28,7 +29,7 @@ export class FormComponent implements OnInit {
   // Cambiamos el título de la página en el método ngOnInit
   ngOnInit() { this.titleService.setTitle('Apple (UK) - Admin Dashboard'); }
 
-  // Creamos un objeto del tipo de la inteface para guardar los datos en él y lo inicializamos
+  // Inicializamos el objeto de la interfaz con los valores por defecto
   product: product = {
     reference: '',
     name: '',
@@ -39,22 +40,23 @@ export class FormComponent implements OnInit {
     image: ''
   };
 
-  // Formulario para insertar un nuevo producto
+  // Objeto FormGroup para el formulario de productos
   productForm = new FormGroup({
+    // Campos del formulario con sus respectivas validaciones
     reference: new FormControl('', [Validators.required, Validators.minLength(1)]),
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     price: new FormControl('', [Validators.required, Validators.min(0)]),
     description: new FormControl('', [Validators.required, Validators.minLength(5)]),
     type: new FormControl('', [Validators.required]),
-    offer: new FormControl(''),
+    offer: new FormControl(false),
     image: new FormControl('', [Validators.required])
   });
 
   // Método para implementar la lógica de envío del formulario
   onSubmit() {
 
-    // Si el formulario es válido, guardamos los datos en el objeto product
     if (this.productForm.valid) {
+      // Si el formulario es válido, guardamos los datos en el objeto product
       this.product.reference = this.productForm.value.reference ? this.productForm.value.reference : '';
       this.product.name = this.productForm.value.name ? this.productForm.value.name : '';
       this.product.price = this.productForm.value.price ? Number(this.productForm.value.price) : 0;
