@@ -1,26 +1,25 @@
 <!-- Form Page -->
-<h1 class="text-4xl text-center my-10">Admin Dashboard</h1>
+<h1 class="md:text-4xl text-2xl text-center my-10">Admin Dashboard</h1>
 
 <!-- Container -->
-<div class="flex justify-center gap-10 bg-blue-700">
-
+<div class="flex flex-col lg:flex-row lg:justify-between lg:gap-0 gap-32 bg-blue-700">
   <!-- Product List -->
-  <div class="flex flex-col items-center w-[50rem] bg-yellow-600">
-    <h2 class="text-2xl text-center mb-10">Product List</h2>
-    <div class="flex flex-col gap-5 text-sm w-[25rem]">
+  <div class="flex flex-col items-center bg-yellow-600 lg:w-[45rem] p-5">
+    <h2 class="md:text-2xl text-xl text-center mb-10">Product List</h2>
+    <div class="flex flex-col gap-5 text-sm sm:flex-row">
 
       <!-- Search Product -->
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-2 w-[20rem]">
         <label for="search" class="font-medium">Search Product</label>
         <input type="text" id="search" matInput name="search" placeholder="Search for a product"
-          class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
+          class="p-2 rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
       </div>
 
       <!-- Sort Product -->
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-2 w-[12rem]">
         <label for="sort" class="font-medium">Sort By</label>
         <select id="sort" matInput name="sort"
-          class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
+          class="p-2 rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
           <option disabled selected>Sort by</option>
           <option>Price: Low to High</option>
           <option>Price: High to Low</option>
@@ -33,9 +32,9 @@
 
   <!-- Product Form -->
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()"
-    class="flex flex-col items-center w-[50rem] text-sm bg-red-600">
-    <h2 class="text-2xl text-center mb-10">Add Product</h2>
-    <div class="flex flex-col gap-5 text-sm w-[25rem]">
+    class="flex flex-col lg:items-start items-center bg-red-600 lg:w-[45rem] lg:pl-[6rem] p-5">
+    <h2 class="md:text-2xl text-xl text-center mb-10">Add Product</h2>
+    <div class="flex flex-col gap-5 text-sm">
 
       <!-- Número de referencia -->
       <div class="flex flex-col gap-2">
@@ -62,7 +61,7 @@
       <!-- Descripción -->
       <div class="flex flex-col gap-2">
         <label for="description" class="font-medium">Description</label>
-        <textarea id="description" matInput name="description" formControlName="description" rows="5"
+        <textarea id="description" matInput name="description" formControlName="description" rows="6"
           placeholder="Enter the product description" autocomplete="off"
           class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600"></textarea>
       </div>
