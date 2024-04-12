@@ -1,7 +1,7 @@
 <!-- Form Page -->
 <h1 class="text-4xl text-center my-10">Add Apple Product</h1>
 
-<form [formGroup]="ProductForm" (ngSubmit)="onSubmit()" class="max-w-xl mx-auto p-5 space-y-8 text-sm">
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="max-w-xl mx-auto p-5 space-y-8 text-sm">
   <!-- Número de referencia -->
   <div class="flex items-center gap-5">
     <label for="reference" class="flex justify-end font-medium w-52">Reference Number :</label>
@@ -62,7 +62,7 @@
 
   <!-- Botón de envío -->
   <div class="flex justify-end items-center pt-5">
-    <button type="submit" [disabled]="ProductForm.invalid"
+    <button type="submit" [disabled]="productForm.invalid"
       class="p-2.5 px-6 border-transparent shadow-sm font-medium rounded-md text-white bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-600">
       Add Product
     </button>
