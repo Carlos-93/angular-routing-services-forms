@@ -10,4 +10,11 @@ import { RouterModule } from '@angular/router';
 })
 export class NavbarComponent {
 
+  // Almacenamos el estado de la visibilidad del menú
+  public menuVisible = false;
+
+  // Método para cambiar el estado de la visibilidad del menú
+  toggleMenu(): void {
+    this.menuVisible = !this.menuVisible;
+  }
 }
