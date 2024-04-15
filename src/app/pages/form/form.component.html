@@ -2,24 +2,23 @@
 <h1 class="md:text-4xl text-2xl text-center my-10">Admin Dashboard</h1>
 
 <!-- Container -->
-<div class="flex flex-col lg:flex-row lg:justify-between lg:gap-0 gap-32 bg-blue-700">
+<main class="flex flex-col lg:flex-row lg:justify-between lg:gap-0 gap-32 bg-yellow-200">
   <!-- Product List -->
-  <div class="flex flex-col items-center bg-yellow-600 lg:w-[45rem] p-5">
+  <section class="flex flex-col items-center lg:w-[45rem] p-5 bg-slate-400">
     <h2 class="md:text-2xl text-xl text-center mb-10">Product List</h2>
     <div class="flex flex-col gap-5 text-sm sm:flex-row">
 
       <!-- Search Product -->
-      <div class="flex flex-col gap-2 w-[20rem]">
+      <div class="flex flex-col gap-2 sm:w-[20rem] w-[17rem]">
         <label for="search" class="font-medium">Search Product</label>
         <input type="text" id="search" matInput name="search" placeholder="Search for a product"
-          class="p-2 rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
+          class="p-2 rounded-md border-2">
       </div>
 
       <!-- Sort Product -->
       <div class="flex flex-col gap-2 w-[12rem]">
         <label for="sort" class="font-medium">Sort By</label>
-        <select id="sort" matInput name="sort"
-          class="p-2 rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
+        <select id="sort" matInput name="sort" class="p-2 rounded-md border-2">
           <option disabled selected>Sort by</option>
           <option>Price: Low to High</option>
           <option>Price: High to Low</option>
@@ -28,83 +27,116 @@
         </select>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- Product Form -->
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()"
-    class="flex flex-col lg:items-start items-center bg-red-600 lg:w-[45rem] lg:pl-[6rem] p-5">
+    class="flex flex-col items-center lg:w-[45rem] p-5 bg-blue-500">
     <h2 class="md:text-2xl text-xl text-center mb-10">Add Product</h2>
     <div class="flex flex-col gap-5 text-sm">
 
       <!-- Número de referencia -->
       <div class="flex flex-col gap-2">
         <label for="reference" class="font-medium">Reference Number</label>
-        <input type="text" id="reference" matInput name="reference" formControlName="reference"
-          placeholder="Enter the reference number" autocomplete="off"
-          class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
+        <input type="text" id="reference" formControlName="reference" placeholder="Enter the reference number"
+          autocomplete="off" class="p-2 flex w-full rounded-md border-2">
+        <!-- Validación de referencia -->
+        <span *ngIf="productForm.get('reference')?.errors?.['required'] && productForm.get('reference')?.touched"
+          class="text-red-600 font-medium">Reference number is required</span>
+        <span *ngIf="productForm.get('reference')?.errors?.['minlength'] && productForm.get('reference')?.touched"
+          class="text-red-600 font-medium">Reference number must be at least 1 character long</span>
+        <span *ngIf="productForm.get('reference')?.errors?.['maxlength'] && productForm.get('reference')?.touched"
+          class="text-red-600 font-medium">Reference number cannot be more than 20 characters long</span>
       </div>
 
       <!-- Nombre del producto -->
       <div class="flex flex-col gap-2">
         <label for="name" class="font-medium">Product Name</label>
-        <input type="text" id="name" matInput name="name" formControlName="name" placeholder="Enter the product name"
-          autocomplete="off" class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
+        <input type="text" id="name" formControlName="name" placeholder="Enter the product name" autocomplete="off"
+          class="p-2 flex w-full rounded-md border-2">
+        <!-- Validación de nombre -->
+        <span *ngIf="productForm.get('name')?.errors?.['required'] && productForm.get('name')?.touched"
+          class="text-red-600 font-medium">Product name is required</span>
+        <span *ngIf="productForm.get('name')?.errors?.['minlength'] && productForm.get('name')?.touched"
+          class="text-red-600 font-medium">Product name must be at least 3 characters long</span>
+        <span *ngIf="productForm.get('name')?.errors?.['maxlength'] && productForm.get('name')?.touched"
+          class="text-red-600 font-medium">Product name cannot be more than 50 characters long</span>
       </div>
 
       <!-- Precio -->
       <div class="flex flex-col gap-2">
         <label for="price" class="font-medium">Price</label>
-        <input type="number" id="price" matInput name="price" formControlName="price" placeholder="Enter the price"
-          autocomplete="off" class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
+        <input type="number" id="price" formControlName="price" placeholder="Enter the price" autocomplete="off"
+          class="p-2 flex w-full rounded-md border-2">
+        <!-- Validación de precio -->
+        <span *ngIf="productForm.get('price')?.errors?.['required'] && productForm.get('price')?.touched"
+          class="text-red-600 font-medium">Price is required</span>
+        <span *ngIf="productForm.get('price')?.errors?.['min'] && productForm.get('price')?.touched"
+          class="text-red-600 font-medium">Price cannot be negative</span>
+        <span *ngIf="productForm.get('price')?.errors?.['pattern'] && productForm.get('price')?.touched"
+          class="text-red-600 font-medium">Price must be a valid number with up to 2 decimal places</span>
       </div>
 
       <!-- Descripción -->
       <div class="flex flex-col gap-2">
         <label for="description" class="font-medium">Description</label>
-        <textarea id="description" matInput name="description" formControlName="description" rows="6"
-          placeholder="Enter the product description" autocomplete="off"
-          class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600"></textarea>
+        <textarea id="description" formControlName="description" rows="6" placeholder="Enter the product description"
+          autocomplete="off" class="p-2 flex w-full rounded-md border-2"></textarea>
+        <!-- Validación de descripción -->
+        <span *ngIf="productForm.get('description')?.errors?.['required'] && productForm.get('description')?.touched"
+          class="text-red-600 font-medium">Description is required</span>
+        <span *ngIf="productForm.get('description')?.errors?.['minlength'] && productForm.get('description')?.touched"
+          class="text-red-600 font-medium">Description must be at least 5 characters long</span>
+        <span *ngIf="productForm.get('description')?.errors?.['maxlength'] && productForm.get('description')?.touched"
+          class="text-red-600 font-medium">Description cannot be more than 500 characters long</span>
       </div>
 
       <!-- Tipo de producto -->
       <div class="flex flex-col gap-2">
         <label for="type" class="font-medium">Product Type</label>
-        <select id="type" matInput formControlName="type" autocomplete="off"
-          class="p-2 flex w-full rounded-md border-2 focus:border-rose-600 focus:ring-rose-600">
-          <option disabled selected>Select product type</option>
-          <option>Mac</option>
-          <option>iPad</option>
-          <option>iPhone</option>
-          <option>Watch</option>
-          <option>AirPods</option>
+        <select id="type" formControlName="type" autocomplete="off" class="p-2 flex w-full rounded-md border-2">
+          <option value="" disabled selected>Select product type</option>
+          <option value="Mac">Mac</option>
+          <option value="iPad">iPad</option>
+          <option value="iPhone">iPhone</option>
+          <option value="Watch">Watch</option>
+          <option value="AirPods">AirPods</option>
         </select>
+        <!-- Validación de tipo de producto -->
+        <span *ngIf="productForm.get('type')?.errors?.['required'] && productForm.get('type')?.touched"
+          class="text-red-600 font-medium">Product type is required</span>
       </div>
 
       <!-- Oferta de producto -->
       <div class="flex items-center gap-2">
         <label for="offer" class="font-medium cursor-pointer">Product On Offer</label>
-        <input id="offer" matInput name="offer" formControlName="offer" type="checkbox"
-          class="h-5 w-5 rounded border-2 focus:border-rose-600 focus:ring-rose-600 checked:bg-rose-500 cursor-pointer">
+        <input id="offer" type="checkbox" formControlName="offer"
+          class="h-5 w-5 rounded border-2 checked:bg-rose-500 cursor-pointer">
       </div>
 
       <!-- Agregar imagen de producto -->
       <div class="flex flex-col gap-2">
         <label for="image" class="font-medium">Product Image</label>
-        <input type="file" id="image" matInput name="image" formControlName="image" autocomplete="off"
+        <input type="file" id="image" formControlName="image" autocomplete="off"
           class="flex w-full text-gray-700 file:rounded-md file:border-gray-300 file:bg-gray-100 file:px-4 file:p-2 file:shadow-sm file:focus:border-rose-600 file:focus:ring-rose-600 cursor-pointer">
+        <!-- Validación de imagen -->
+        <span *ngIf="productForm.get('image')?.errors?.['required'] && productForm.get('image')?.touched"
+          class="text-red-600 font-medium">An image file is required (JPG, JPEG, PNG)</span>
+        <span *ngIf="productForm.get('image')?.errors?.['pattern'] && productForm.get('image')?.touched"
+          class="text-red-600 font-medium">Invalid file type. Only JPG, JPEG, PNG are allowed</span>
       </div>
 
       <!-- Botón de envío -->
-      <div class="flex justify-end items-center pt-5">
+      <div class="flex justify-end items-center pt-5 gap-3">
         <button type="submit" [disabled]="productForm.invalid"
-          class="p-2.5 px-6 border-transparent shadow-sm font-medium rounded-md text-white bg-rose-600 hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-rose-600">
+          class="md:p-2.5 md:px-6 p-2 px-4 border-transparent shadow-sm font-medium rounded-md text-white bg-rose-600 hover:bg-rose-700">
           Add Product
         </button>
         <button type="reset"
-          class="p-2.5 px-6 border-transparent shadow-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-600 ml-3">
+          class="md:p-2.5 md:px-6 p-2 px-4 border-transparent shadow-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700">
           Clear Fields
         </button>
       </div>
     </div>
   </form>
-</div>
+</main>

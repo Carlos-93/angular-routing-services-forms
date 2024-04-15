@@ -8,6 +8,11 @@
     --font-primary: "Montserrat", sans-serif;
 }
 
+:focus {
+    outline: none;
+    border-color: #ff4d6d;
+}
+
 * {
     font-family: var(--font-primary);
     -ms-overflow-style: none;
@@ -18,23 +23,15 @@
     }
 }
 
-form,
-input,
-textarea,
-select,
-button,
-label {
-    font-family: inherit;
-    font-size: inherit;
-    -webkit-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
-    background-color: transparent;
-    color: inherit;
-    display: block;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+body {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%),
+        url('./assets/images/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+textarea {
     outline: none;
     resize: none
 }

@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Title } from '@angular/platform-browser';
 
 // Interface para el formulario de productos
-export interface product {
+export interface Product {
   reference: string;
   name: string;
   price: number;
@@ -23,14 +23,8 @@ export interface product {
 })
 export class FormComponent implements OnInit {
 
-  // Injectamos el servicio Title en el constructor
-  constructor(private titleService: Title) { }
-
-  // Cambiamos el título de la página en el método ngOnInit
-  ngOnInit() { this.titleService.setTitle('Apple (UK) - Admin Dashboard'); }
-
   // Inicializamos el objeto de la interfaz con los valores por defecto
-  product: product = {
+  product: Product = {
     reference: '',
     name: '',
     price: 0,
@@ -42,28 +36,31 @@ export class FormComponent implements OnInit {
 
   // Objeto FormGroup para el formulario de productos
   productForm = new FormGroup({
-    // Campos del formulario con sus respectivas validaciones
-    reference: new FormControl('', [Validators.required, Validators.minLength(1)]),
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    price: new FormControl('', [Validators.required, Validators.min(0)]),
-    description: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    
+    // Definimos los campos del formulario con sus respectivas validaciones
+    reference: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]),
+    name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
+    price: new FormControl('', [Validators.required, Validators.min(0), Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]),
+    description: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(500)]),
     type: new FormControl('', [Validators.required]),
     offer: new FormControl(false),
-    image: new FormControl('', [Validators.required])
+    image: new FormControl('', [Validators.required, Validators.pattern(/\.(jpg|jpeg|png)$/i)])
   });
+
+  // Injectamos el servicio Title en el constructor
+  constructor(private titleService: Title) { }
+
+  // Cambiamos el título de la página en el método ngOnInit
+  ngOnInit() { this.titleService.setTitle('Apple (UK) - Admin Dashboard'); }
 
   // Método para implementar la lógica de envío del formulario
   onSubmit() {
 
+    // Comprobamos si el formulario es válido
     if (this.productForm.valid) {
-      // Si el formulario es válido, guardamos los datos en el objeto product
-      this.product.reference = this.productForm.value.reference ? this.productForm.value.reference : '';
-      this.product.name = this.productForm.value.name ? this.productForm.value.name : '';
-      this.product.price = this.productForm.value.price ? Number(this.productForm.value.price) : 0;
-      this.product.description = this.productForm.value.description ? this.productForm.value.description : '';
-      this.product.type = this.productForm.value.type ? this.productForm.value.type : '';
-      this.product.offer = this.productForm.value.offer ? Boolean(this.productForm.value.offer) : false;
-      this.product.image = this.productForm.value.image ? this.productForm.value.image : '';
+
+      // Actualizamos el objeto product con los valores ingresados en el formulario
+      Object.assign(this.product, this.productForm.value);
 
       // Reiniciamos el formulario
       this.productForm.reset();
