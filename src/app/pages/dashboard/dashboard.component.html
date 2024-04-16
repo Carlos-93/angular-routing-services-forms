@@ -1,8 +1,8 @@
 <!-- Admin Dashboard Page -->
-<h1 class="md:text-4xl text-2xl text-center mb-14">Admin Dashboard</h1>
+<img src="./assets/images/banner-home.webp" alt="Banner Angular 17" class="banner-shadow ml-auto mr-auto opacity-70">
 
 <!-- Main Content -->
-<main class="flex flex-col lg:flex-row justify-center lg:gap-0 gap-32">
+<main class="flex flex-col lg:flex-row justify-center lg:gap-0 gap-32 pt-20">
   <!-- Product List -->
   <section class="flex flex-col items-center gap-14 lg:w-[60rem] p-5">
     <h2 class="md:text-2xl text-xl text-center">Product List</h2>
@@ -37,8 +37,8 @@
           <span class="font-bold text-base md:text-lg">{{product.reference}} - {{product.name}}</span>
         </div>
         <!-- Image of the product -->
-        <div class="flex justify-center mb-2 w-full">
-          <img src={{product.image}} alt="Product Apple Image" class="w-52">
+        <div class="flex justify-center w-full">
+          <img [src]="product.image" [alt]="product.name" class="w-52">
         </div>
         <!-- Description of the product -->
         <span class="text-justify">{{product.description}}</span>

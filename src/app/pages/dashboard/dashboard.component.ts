@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
       description: 'The iPhone 15 Pro Max is the most powerful and advanced smartphone ever created by Apple',
       type: 'iPhone',
       offer: false,
-      image: './assets/images/iphone-15-pro-max.png'
+      image: './assets/images/iphone15-pro.png'
     },
     {
       reference: '53-002',
@@ -41,7 +41,7 @@ export class DashboardComponent implements OnInit {
       description: 'The iPhone 15 is the most powerful and advanced smartphone ever created by Apple',
       type: 'iPhone',
       offer: true,
-      image: './assets/images/iphone-15.png'
+      image: './assets/images/iphone15.png'
     },
     {
       reference: '53-003',
@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit {
       description: 'The MacBook Pro M3 is the most powerful and advanced laptop ever created by Apple',
       type: 'Mac',
       offer: false,
-      image: 'macbookprom3.jpg'
+      image: './assets/images/macbook-pro-m3.png'
     },
     {
       reference: '53-004',
@@ -59,25 +59,25 @@ export class DashboardComponent implements OnInit {
       description: 'The MacBook Air M3 is the most powerful and advanced laptop ever created by Apple',
       type: 'Mac',
       offer: true,
-      image: 'macbookairm3.jpg'
+      image: './assets/images/macbook-air-m3.png'
     },
     {
       reference: '53-005',
-      name: 'iPad Pro 15',
+      name: 'iPad Pro',
       price: 799.99,
-      description: 'The iPad Pro 15 is the most powerful and advanced tablet ever created by Apple',
+      description: 'The iPad Pro is the most powerful and advanced tablet ever created by Apple',
       type: 'iPad',
       offer: false,
-      image: 'ipadpro15.jpg'
+      image: './assets/images/ipad-pro.png'
     },
     {
       reference: '53-006',
-      name: 'iPad 15',
+      name: 'iPad Air',
       price: 499.99,
-      description: 'The iPad 15 is the most powerful and advanced tablet ever created by Apple',
+      description: 'The iPad Air is the most powerful and advanced tablet ever created by Apple',
       type: 'iPad',
       offer: true,
-      image: 'ipad15.jpg'
+      image: './assets/images/ipad-air.png'
     },
     {
       reference: '53-007',
@@ -86,7 +86,7 @@ export class DashboardComponent implements OnInit {
       description: 'The Apple Watch 15 is the most powerful and advanced smartwatch ever created by Apple',
       type: 'Apple Watch',
       offer: false,
-      image: 'applewatch15.jpg'
+      image: './assets/images/iphone15-pro.png'
     },
     {
       reference: '53-008',
@@ -95,7 +95,7 @@ export class DashboardComponent implements OnInit {
       description: 'The Apple Watch SE 15 is the most powerful and advanced smartwatch ever created by Apple',
       type: 'Apple Watch',
       offer: true,
-      image: 'applewatchse15.jpg'
+      image: './assets/images/iphone15-pro.png'
     },
     {
       reference: '53-009',
@@ -104,7 +104,7 @@ export class DashboardComponent implements OnInit {
       description: 'The AirPods 5 are the most powerful and advanced wireless earbuds ever created by Apple',
       type: 'AirPods',
       offer: false,
-      image: 'airpods5.jpg'
+      image: './assets/images/iphone15-pro.png'
     },
     {
       reference: '53-010',
@@ -113,7 +113,7 @@ export class DashboardComponent implements OnInit {
       description: 'The AirPods Pro 5 are the most powerful and advanced wireless earbuds ever created by Apple',
       type: 'AirPods',
       offer: true,
-      image: 'airpodspro5.jpg'
+      image: './assets/images/iphone15-pro.png'
     }
   ];
 

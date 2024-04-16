@@ -5,7 +5,7 @@ import { IpadComponent } from './pages/ipad/ipad.component';
 import { IphoneComponent } from './pages/iphone/iphone.component';
 import { WatchComponent } from './pages/watch/watch.component';
 import { AirpodsComponent } from './pages/airpods/airpods.component';
-import { DashboardComponent } from './pages/dashboard/DashboardComponent';
+import { DashboardComponent } from './pages/dashboard/dashboard.component'
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
