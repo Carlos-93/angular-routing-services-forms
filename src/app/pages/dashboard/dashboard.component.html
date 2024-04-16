@@ -30,11 +30,13 @@
 
     <!-- Product Cards -->
     <section class="grid grid-cols-1 sm:grid-cols-2 justify-items-center gap-5 overflow-y-auto max-h-[49rem]">
-      <article *ngFor="let product of products"
+      <article *ngFor="let product of products; let i = index"
         class="flex flex-col gap-5 p-5 w-full text-sm md:text-base bg-slate-100 rounded-xl">
-        <div>
+        <div class="flex justify-between items-center">
           <!-- Reference number and name of the product -->
-          <span class="font-bold text-base md:text-lg">{{product.reference}} - {{product.name}}</span>
+          <span class="font-bold text-base md:text-lg">{{ product.reference }} - {{ product.name }}</span>
+          <i class="material-icons text-red-500 text-3xl cursor-pointer transition-colors duration-300 ease-in-out hover:text-red-700"
+            (click)="deleteProduct(i)">close</i>
         </div>
         <!-- Image of the product -->
         <div class="flex justify-center w-full">
@@ -46,8 +48,8 @@
         <div class="flex items-end justify-between">
           <span class="font-semibold">From {{product.price}}€</span>
           <span *ngIf="product.offer" class="text-green-600 font-bold">On Offer</span>
-          <button
-            class="md:p-2.5 md:px-6 p-2 px-4 border-transparent shadow-sm font-medium rounded-md text-white bg-rose-600 hover:bg-rose-700">
+          <button class="md:p-2.5 md:px-6 p-2 px-4 border-transparent shadow-sm font-medium rounded-md 
+            text-white bg-rose-600 hover:bg-rose-700">
             Buy
           </button>
         </div>
@@ -142,7 +144,7 @@
       <!-- Agregar imagen de producto -->
       <div class="flex flex-col gap-2">
         <label for="image" class="font-medium">Product Image</label>
-        <input type="file" id="image" formControlName="image" autocomplete="off"
+        <input type="file" id="image" formControlName="image" autocomplete="off" (change)="onFileSelected($event)"
           class="flex w-full text-gray-700 file:rounded-md file:border-gray-300 file:bg-gray-100 file:px-4 file:p-2 file:shadow-sm file:focus:border-rose-600 file:focus:ring-rose-600 cursor-pointer">
         <!-- Validación de imagen -->
         <span *ngIf="productForm.get('image')?.errors?.['required'] && productForm.get('image')?.touched"

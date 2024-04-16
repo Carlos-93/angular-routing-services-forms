@@ -81,21 +81,21 @@ export class DashboardComponent implements OnInit {
     },
     {
       reference: '53-007',
-      name: 'Apple Watch 15',
+      name: 'Apple Watch Ultra 2',
       price: 399.99,
-      description: 'The Apple Watch 15 is the most powerful and advanced smartwatch ever created by Apple',
+      description: 'The Apple Watch Ultra 2 is the most powerful and advanced smartwatch ever created by Apple',
       type: 'Apple Watch',
       offer: false,
-      image: './assets/images/iphone15-pro.png'
+      image: './assets/images/watch-ultra-2.png'
     },
     {
       reference: '53-008',
-      name: 'Apple Watch SE 15',
+      name: 'Apple Watch SE',
       price: 199.99,
-      description: 'The Apple Watch SE 15 is the most powerful and advanced smartwatch ever created by Apple',
+      description: 'The Apple Watch SE is the most powerful and advanced smartwatch ever created by Apple',
       type: 'Apple Watch',
       offer: true,
-      image: './assets/images/iphone15-pro.png'
+      image: './assets/images/watch-se.png'
     },
     {
       reference: '53-009',
@@ -134,7 +134,7 @@ export class DashboardComponent implements OnInit {
     // Definimos los campos del formulario con sus respectivas validaciones
     reference: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]),
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
-    price: new FormControl('', [Validators.required, Validators.min(0), Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]),
+    price: new FormControl(0, [Validators.required, Validators.min(0), Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]),
     description: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(500)]),
     type: new FormControl('', [Validators.required]),
     offer: new FormControl(false),
@@ -147,14 +147,34 @@ export class DashboardComponent implements OnInit {
   // Cambiamos el título de la página en el método ngOnInit
   ngOnInit() { this.titleService.setTitle('Apple (UK) - Admin Dashboard'); }
 
+  // Método para seleccionar un archivo de imagen y obtener su nombre
+  onFileSelected(event: any) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.product.image = file.name;
+    }
+  }
+
+  // Método para eliminar un producto Apple del array
+  deleteProduct(index: number) { this.products.splice(index, 1); }
+
   // Método para implementar la lógica de envío del formulario
   onSubmit() {
 
     // Comprobamos si el formulario es válido
     if (this.productForm.valid) {
 
-      // Actualizamos el objeto product con los valores ingresados en el formulario
+      // Asignamos los valores del formulario al objeto de producto
       Object.assign(this.product, this.productForm.value);
+
+      // Eliminamos la ruta del archivo y nos quedamos con el nombre del archivo
+      this.product.image = this.product.image.replace(/^.*[\\\/]/, '');
+
+      // Añadimos la ruta de la imagen al objeto de producto
+      this.product.image = './assets/images/' + this.product.image;
+
+      // Añadimos el nuevo producto al array de productos
+      this.products.push(this.product);
 
       // Reiniciamos el formulario
       this.productForm.reset();
