@@ -1,33 +1,32 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Title } from '@angular/platform-browser';
 import { ProductsService } from '../../services/products-service';
 import { Product } from '../../interfaces/product';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-iphone',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './iphone.component.html',
-  styleUrl: './iphone.component.css'
+  styleUrls: ['./iphone.component.css']
 })
 export class IphoneComponent {
 
-  // Inicializamos el array de productos Apple
+  // Inicializamos el array para almacenar productos Apple de tipo iPhone
   products: Product[] = [];
 
-  // Injectamos el servicio Title y ProductsService en el constructor
+  // Inyectamos el servicio Title y ProductsService para usar en el componente
   constructor(private titleService: Title, private ProductsService: ProductsService) { }
 
   ngOnInit() {
-    // Modificamos el title de la página utilizando el servicio Title
-    this.titleService.setTitle('Apple (UK) - Ours iPhones');
+    // Establecemos el título de la página usando el servicio Title
+    this.titleService.setTitle('Apple (UK) - Our iPhones');
 
-    // 
+    // Obtenemos todos los productos y almacenamos los resultados en 'products'
     this.products = [...this.ProductsService.shareData()];
 
-    // Filtramos los productos de tipo iPhone utilizando el método filter
+    // Filtramos los productos para incluir solo aquellos del tipo 'iPhone'
     this.products = this.products.filter(product => product.type === 'iPhone');
-
   }
 }

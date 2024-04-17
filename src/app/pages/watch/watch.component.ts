@@ -1,18 +1,32 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ProductsService } from '../../services/products-service';
+import { Product } from '../../interfaces/product';
 import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-watch',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './watch.component.html',
-  styleUrl: './watch.component.css'
+  styleUrls: ['./watch.component.css']
 })
 export class WatchComponent {
 
-  // Injectamos el servicio Title en el constructor
-  constructor(private titleService: Title) { }
+  // Inicializamos el array para almacenar productos Apple de tipo Apple Watch
+  products: Product[] = [];
 
-  // Cambiamos el título de la página en el método ngOnInit
-  ngOnInit() { this.titleService.setTitle('Apple (UK) - Our Watch'); }
+  // Inyectamos el servicio Title y ProductsService para usar en el componente
+  constructor(private titleService: Title, private ProductsService: ProductsService) { }
+
+  ngOnInit() {
+    // Establecemos el título de la página usando el servicio Title
+    this.titleService.setTitle('Apple (UK) - Our Apple Watch');
+
+    // Obtenemos todos los productos y almacenamos los resultados en 'products'
+    this.products = [...this.ProductsService.shareData()];
+
+    // Filtramos los productos para incluir solo aquellos del tipo 'Apple Watch'
+    this.products = this.products.filter(product => product.type === 'Apple Watch');
+  }
 }

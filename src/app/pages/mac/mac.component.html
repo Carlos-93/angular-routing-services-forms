@@ -1,29 +1,33 @@
-<!-- Mac Page -->
-<h1 class="text-4xl text-center font-semibold py-20">MacBook</h1>
-
-<!-- MacBook Products -->
-<section class="grid grid-cols-1 sm:grid-cols-2 justify-items-center gap-5 overflow-y-auto pr-2 max-h-[57.5rem]">
-    <article *ngFor="let product of products; let i = index"
-        class="flex flex-col gap-5 p-5 w-full text-sm md:text-base bg-slate-100 rounded-xl">
-        <div class="flex justify-between items-center">
-            <!-- Reference number and name of the product -->
-            <span class="font-bold text-base md:text-lg">{{ product.reference }} - {{ product.name }}
+<!-- MacBook Page -->
+<main class="flex flex-col gap-20 py-20">
+    <h1 class="text-4xl text-center font-semibold">MacBook</h1>
+    <!-- MacBook Products -->
+    <section class="grid grid-cols-1 sm:grid-cols-3 justify-items-center gap-5 overflow-y-auto pr-2 max-h-[57.5rem]">
+        <article *ngFor="let product of products; let i = index"
+            class="flex flex-col gap-5 p-5 w-full text-sm md:text-base bg-slate-100 rounded-xl">
+            <div class="flex justify-between items-center">
+                <!-- Reference number and name of the product -->
+                <span class="font-bold text-base md:text-lg">
+                    {{ product.reference }} - {{ product.name }}
+                </span>
+            </div>
+            <!-- Image of the product -->
+            <div class="flex justify-center w-full">
+                <img [src]="product.image" [alt]="product.name" class="w-52">
+            </div>
+            <!-- Description of the product -->
+            <span class="text-justify">
+                {{product.description}}
             </span>
-        </div>
-        <!-- Image of the product -->
-        <div class="flex justify-center w-full">
-            <img [src]="product.image" [alt]="product.name" class="w-52">
-        </div>
-        <!-- Description of the product -->
-        <span class="text-justify">{{product.description}}</span>
-        <!-- Price of the product, Offer status and Buy button -->
-        <div class="flex items-end justify-between">
-            <span class="font-semibold">From {{product.price}}€</span>
-            <span *ngIf="product.offer" class="text-green-600 font-bold">On Offer</span>
-            <button class="md:p-2.5 md:px-6 p-2 px-4 border-transparent shadow-sm font-medium rounded-md 
+            <!-- Price of the product, Offer status and Buy button -->
+            <div class="flex items-end justify-between">
+                <span class="font-semibold">From {{product.price}}€</span>
+                <span *ngIf="product.offer" class="text-green-600 font-bold">On Offer</span>
+                <button class="md:p-2.5 md:px-6 p-2 px-4 border-transparent shadow-sm font-medium rounded-md 
               text-white bg-rose-600 hover:bg-rose-700">
-                Buy
-            </button>
-        </div>
-    </article>
-</section>
+                    Buy
+                </button>
+            </div>
+        </article>
+    </section>
+</main>

@@ -121,7 +121,6 @@ export class DashboardComponent implements OnInit {
 
   // Objeto FormGroup para el formulario de productos
   productForm = new FormGroup({
-
     // Definimos los campos del formulario con sus respectivas validaciones
     reference: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]),
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
@@ -132,12 +131,14 @@ export class DashboardComponent implements OnInit {
     image: new FormControl('', [Validators.required, Validators.pattern(/\.(jpg|jpeg|png)$/i)])
   });
 
-  // Injectamos el servicio Title en el constructor
+  // Inyectamos el servicio Title y ProductsService para usar en el componente
   constructor(private titleService: Title, private ProductsService: ProductsService) { }
 
-  // Cambiamos el título de la página en el método ngOnInit
   ngOnInit(): void {
+    // Establecemos el título de la página usando el servicio Title
     this.titleService.setTitle('Apple (UK) - Admin Dashboard');
+
+    // Obtenemos todos los productos y almacenamos los resultados en 'products'
     this.products = [...this.ProductsService.shareData()];
   }
 
@@ -152,14 +153,12 @@ export class DashboardComponent implements OnInit {
   // Método para eliminar un producto Apple del array
   deleteProduct(index: number) {
     console.log(this.products);
-      this.products.splice(index, 1);
-      console.log(this.products);
-      this.ProductsService.shareData.set(this.products);
+    this.products.splice(index, 1);
+    console.log(this.products);
+    this.ProductsService.shareData.set(this.products);
   }
 
-  // Método para implementar la lógica de envío del formulario
   onSubmit() {
-
     // Comprobamos si el formulario es válido
     if (this.productForm.valid) {
 

@@ -100,7 +100,7 @@ export class ProductsService {
     }
   ];
 
-  // Signal para compartir los productos con otros componentes
+  // Signal para compartir los productos Apple con otros componentes
   shareData = signal<Product[]>(this.products);
 
   // Método para eliminar un producto Apple

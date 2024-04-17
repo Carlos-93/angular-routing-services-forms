@@ -1,32 +1,32 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Title } from '@angular/platform-browser';
 import { ProductsService } from '../../services/products-service';
 import { Product } from '../../interfaces/product';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-mac',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './mac.component.html',
-  styleUrl: './mac.component.css'
+  styleUrls: ['./mac.component.css']
 })
 export class MacComponent {
 
-  // Inicializamos el array de productos Apple
+  // Inicializamos el array para almacenar productos Apple de tipo Mac
   products: Product[] = [];
 
-  // Injectamos el servicio Title y ProductsService en el constructor
+  // Inyectamos el servicio Title y ProductsService para usar en el componente
   constructor(private titleService: Title, private ProductsService: ProductsService) { }
 
   ngOnInit() {
-    // Modificamos el title de la página utilizando el servicio Title
-    this.titleService.setTitle('Apple (UK) - Ours MacBooks');
+    // Establecemos el título de la página usando el servicio Title
+    this.titleService.setTitle('Apple (UK) - Our MacBooks');
 
-    
+    // Obtenemos todos los productos y almacenamos los resultados en 'products'
     this.products = [...this.ProductsService.shareData()];
 
-    // Filtramos los productos de tipo Mac utilizando el método filter
+    // Filtramos los productos para incluir solo aquellos del tipo 'Mac'
     this.products = this.products.filter(product => product.type === 'Mac');
   }
 }
