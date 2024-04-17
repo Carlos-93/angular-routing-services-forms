@@ -12,7 +12,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 export class FooterComponent {
 
   // Propiedad para el logo del footer
-  logo: string = "/assets/images/angular17.png";
+  logo: string = "/assets/images/apple-footer.webp";
 
   // Propiedad para el año actual de la página
   year: number = new Date().getFullYear();

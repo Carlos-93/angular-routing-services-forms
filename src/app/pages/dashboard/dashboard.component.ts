@@ -1,18 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ProductsService } from '../../services/products-service';
+import { Product } from '../../interfaces/product';
 import { Title } from '@angular/platform-browser';
-
-// Interface para el formulario de productos
-export interface Product {
-  reference: string;
-  name: string;
-  price: number;
-  description: string;
-  type: string;
-  offer: boolean;
-  image: string;
-}
 
 @Component({
   selector: 'app-dashboard',
@@ -142,10 +133,13 @@ export class DashboardComponent implements OnInit {
   });
 
   // Injectamos el servicio Title en el constructor
-  constructor(private titleService: Title) { }
+  constructor(private titleService: Title, private ProductsService: ProductsService) { }
 
   // Cambiamos el título de la página en el método ngOnInit
-  ngOnInit() { this.titleService.setTitle('Apple (UK) - Admin Dashboard'); }
+  ngOnInit(): void {
+    this.titleService.setTitle('Apple (UK) - Admin Dashboard');
+    this.products = [...this.ProductsService.shareData()];
+  }
 
   // Método para seleccionar un archivo de imagen y obtener su nombre
   onFileSelected(event: any) {
@@ -156,7 +150,12 @@ export class DashboardComponent implements OnInit {
   }
 
   // Método para eliminar un producto Apple del array
-  deleteProduct(index: number) { this.products.splice(index, 1); }
+  deleteProduct(index: number) {
+    console.log(this.products);
+      this.products.splice(index, 1);
+      console.log(this.products);
+      this.ProductsService.shareData.set(this.products);
+  }
 
   // Método para implementar la lógica de envío del formulario
   onSubmit() {
@@ -175,6 +174,9 @@ export class DashboardComponent implements OnInit {
 
       // Añadimos el nuevo producto al array de productos
       this.products.push(this.product);
+
+      // Enviamos los datos al servicio
+      this.ProductsService.shareData.set(this.products);
 
       // Reiniciamos el formulario
       this.productForm.reset();
