@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
@@ -15,4 +16,5 @@ export class HomeComponent implements OnInit {
 
   // Cambiamos el título de la página en el método ngOnInit
   ngOnInit() { this.titleService.setTitle('Apple (UK) - Home Page'); }
+  
 }

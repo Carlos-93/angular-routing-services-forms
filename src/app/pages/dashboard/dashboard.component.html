@@ -1,11 +1,11 @@
 <!-- Admin Dashboard Page -->
-<img src="./assets/images/banner-home.webp" alt="Banner Angular 17" class="banner-shadow ml-auto mr-auto opacity-70">
+<img src="./assets/images/banner-home.webp" alt="Banner Angular 17" class="banner-shadow ml-auto mr-auto w-full">
 
 <!-- Main Content -->
-<main class="flex flex-col lg:flex-row justify-center lg:gap-0 gap-32 pt-20">
+<main class="flex flex-col lg:flex-row justify-center lg:gap-0 gap-32 pt-14">
   <!-- Product List -->
   <section class="flex flex-col items-center gap-14 lg:w-[60rem] p-5">
-    <h2 class="md:text-2xl text-xl text-center">Product List</h2>
+    <h2 class="md:text-2xl text-xl text-center font-semibold">Product List</h2>
     <div class="flex flex-col gap-5 text-sm sm:flex-row">
 
       <!-- Search Product -->
@@ -29,14 +29,14 @@
     </div>
 
     <!-- Product Cards -->
-    <section class="grid grid-cols-1 sm:grid-cols-2 justify-items-center gap-5 overflow-y-auto max-h-[49rem]">
+    <section class="grid grid-cols-1 sm:grid-cols-2 justify-items-center gap-5 overflow-y-auto pr-2 max-h-[58rem]">
       <article *ngFor="let product of products; let i = index"
         class="flex flex-col gap-5 p-5 w-full text-sm md:text-base bg-slate-100 rounded-xl">
         <div class="flex justify-between items-center">
           <!-- Reference number and name of the product -->
           <span class="font-bold text-base md:text-lg">{{ product.reference }} - {{ product.name }}</span>
-          <i class="material-icons text-red-500 text-3xl cursor-pointer transition-colors duration-300 ease-in-out hover:text-red-700"
-            (click)="deleteProduct(i)">close</i>
+          <i class="fa-regular fa-rectangle-xmark text-red-500 text-2xl cursor-pointer transition-colors duration-300 ease-in-out hover:text-red-700"
+            (click)="deleteProduct(i)"></i>
         </div>
         <!-- Image of the product -->
         <div class="flex justify-center w-full">
@@ -59,7 +59,7 @@
 
   <!-- Product Form -->
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="flex flex-col items-center lg:w-[45rem] p-5">
-    <h2 class="md:text-2xl text-xl text-center mb-10">Add Product</h2>
+    <h2 class="md:text-2xl text-xl text-center mb-10 font-semibold">Add Product</h2>
     <div class="flex flex-col gap-5 text-sm sm:w-[26rem]">
 
       <!-- Número de referencia -->

@@ -164,7 +164,7 @@ export class DashboardComponent implements OnInit {
     // Comprobamos si el formulario es válido
     if (this.productForm.valid) {
 
-      // Asignamos los valores del formulario al objeto de producto
+      // Asignamos los valores del formulario al objeto producto
       Object.assign(this.product, this.productForm.value);
 
       // Eliminamos la ruta del archivo y nos quedamos con el nombre del archivo

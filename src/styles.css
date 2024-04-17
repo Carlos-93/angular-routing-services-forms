@@ -28,6 +28,31 @@ textarea {
     resize: none
 }
 
+/* Estilos específicos para el contenedor con scroll */
+.grid.overflow-y-auto {
+    -ms-overflow-style: scrollbar;
+    scrollbar-width: auto;
+
+    &::-webkit-scrollbar {
+        display: block;
+        width: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 0.75rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #E11D48;
+        border-radius: 0.75rem;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+}
+
 .main-app {
     background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%),
         url('./assets/images/background.jpg');
