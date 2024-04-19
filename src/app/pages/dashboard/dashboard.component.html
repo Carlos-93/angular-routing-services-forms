@@ -11,7 +11,7 @@
       <!-- Search Product -->
       <div class="flex flex-col gap-2 sm:w-[20rem] w-[17rem]">
         <label for="search" class="font-medium">Search Product</label>
-        <input type="text" id="search" matInput name="search" placeholder="Search for a product"
+        <input type="text" id="search" matInput name="search" placeholder="iPhone 15 Pro Max"
           class="p-2 rounded-md border-2">
       </div>
 
@@ -40,7 +40,7 @@
         </div>
         <!-- Image of the product -->
         <div class="flex justify-center w-full">
-          <img [src]="product.image" [alt]="product.name" class="w-52">
+          <img [src]="product.image" [alt]="product.name" class="w-52 h-56">
         </div>
         <!-- Description of the product -->
         <span class="text-justify">{{product.description}}</span>
@@ -65,8 +65,8 @@
       <!-- Número de referencia -->
       <div class="flex flex-col gap-2">
         <label for="reference" class="font-medium">Reference Number</label>
-        <input type="text" id="reference" formControlName="reference" placeholder="Enter the reference number"
-          autocomplete="off" class="p-2 rounded-md border-2">
+        <input type="text" id="reference" formControlName="reference" placeholder="54-001" autocomplete="off"
+          class="p-2 rounded-md border-2">
         <!-- Validación de referencia -->
         <span *ngIf="productForm.get('reference')?.errors?.['required'] && productForm.get('reference')?.touched"
           class="text-red-600 font-medium">Reference number is required</span>
@@ -79,7 +79,7 @@
       <!-- Nombre del producto -->
       <div class="flex flex-col gap-2">
         <label for="name" class="font-medium">Product Name</label>
-        <input type="text" id="name" formControlName="name" placeholder="Enter the product name" autocomplete="off"
+        <input type="text" id="name" formControlName="name" placeholder="MacBook Pro M3" autocomplete="off"
           class="p-2 rounded-md border-2">
         <!-- Validación de nombre -->
         <span *ngIf="productForm.get('name')?.errors?.['required'] && productForm.get('name')?.touched"
@@ -93,7 +93,7 @@
       <!-- Precio -->
       <div class="flex flex-col gap-2">
         <label for="price" class="font-medium">Price</label>
-        <input type="number" id="price" formControlName="price" placeholder="Enter the price" autocomplete="off"
+        <input type="number" id="price" formControlName="price" placeholder="999.99€" autocomplete="off"
           class="p-2 rounded-md border-2">
         <!-- Validación de precio -->
         <span *ngIf="productForm.get('price')?.errors?.['required'] && productForm.get('price')?.touched"
@@ -107,7 +107,8 @@
       <!-- Descripción -->
       <div class="flex flex-col gap-2">
         <label for="description" class="font-medium">Description</label>
-        <textarea id="description" formControlName="description" rows="6" placeholder="Enter the product description"
+        <textarea id="description" formControlName="description" rows="6"
+          placeholder="The MacBook Air M3 is the most powerful and advanced laptop ever created by Apple"
           autocomplete="off" class="p-2 rounded-md border-2"></textarea>
         <!-- Validación de descripción -->
         <span *ngIf="productForm.get('description')?.errors?.['required'] && productForm.get('description')?.touched"
@@ -166,4 +167,12 @@
       </div>
     </div>
   </form>
+
+  <!-- Modal de Éxito -->
+  <div *ngIf="success" class="modal-overlay">
+    <div class="modal-container">
+      <h3 class="modal-title">Product Added Successfully</h3>
+      <i class="modal-icon fa-solid fa-check-circle"></i>
+    </div>
+  </div>
 </main>

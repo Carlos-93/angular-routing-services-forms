@@ -5,7 +5,6 @@ import { Product } from '../interfaces/product';
   providedIn: 'root'
 })
 export class ProductsService {
-
   // Array de objetos de productos Apple
   products: Product[] = [
     {
@@ -82,31 +81,26 @@ export class ProductsService {
     },
     {
       reference: '53-009',
-      name: 'AirPods 5',
+      name: 'AirPods Pro 2ª Gen',
       price: 199.99,
-      description: 'The AirPods 5 are the most powerful and advanced wireless earbuds ever created by Apple',
+      description: 'The AirPods Pro 2ª Gen are the most powerful and advanced wireless earbuds ever created by Apple',
       type: 'AirPods',
       offer: false,
-      image: './assets/images/iphone15-pro.png'
+      image: './assets/images/airpods-pro-2gen.png'
     },
     {
       reference: '53-010',
-      name: 'AirPods Pro 5',
+      name: 'AirPods 3ª Gen',
       price: 299.99,
-      description: 'The AirPods Pro 5 are the most powerful and advanced wireless earbuds ever created by Apple',
+      description: 'The AirPods 3ª Gen are the most powerful and advanced wireless earbuds ever created by Apple',
       type: 'AirPods',
       offer: true,
-      image: './assets/images/iphone15-pro.png'
+      image: './assets/images/airpods-3gen.png'
     }
   ];
 
-  // Signal para compartir los productos Apple con otros componentes
+  // Signal para compartir los productos Apple entre componentes hermanos
   shareData = signal<Product[]>(this.products);
 
-  // Método para eliminar un producto Apple
-  deleteProduct(reference: string) {
-    // Filtramos los productos y eliminamos el producto con la referencia proporcionada
-    this.shareData.set(this.products.filter(product => product.reference !== reference));
-  }
   constructor() { }
 }

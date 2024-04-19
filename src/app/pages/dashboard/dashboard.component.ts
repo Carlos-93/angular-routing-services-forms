@@ -14,7 +14,9 @@ import { Title } from '@angular/platform-browser';
 })
 export class DashboardComponent implements OnInit {
 
-  // Instanciamos el array de productos del servicio ProductsService
+  success: boolean = false;
+
+  // Almacenamos en products el array de productos Apple ubicado en el servicio
   products = this.ProductsService.products;
 
   // Inicializamos el objeto de la interfaz con los valores por defecto
@@ -32,7 +34,7 @@ export class DashboardComponent implements OnInit {
   productForm = new FormGroup({
     reference: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]),
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
-    price: new FormControl(0, [Validators.required, Validators.min(0), Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]),
+    price: new FormControl('', [Validators.required, Validators.min(0), Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]),
     description: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(500)]),
     type: new FormControl('', [Validators.required]),
     offer: new FormControl(false),
@@ -45,7 +47,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     // Establecemos el título de la página usando el servicio Title
     this.titleService.setTitle('Apple (UK) - Admin Dashboard');
-
     // Obtenemos todos los productos y almacenamos los resultados en 'products'
     this.products = [...this.ProductsService.shareData()];
   }
@@ -64,25 +65,30 @@ export class DashboardComponent implements OnInit {
     this.ProductsService.shareData.set(this.products);
   }
 
+  // Método para cerrar el modal de éxito transcurridos 3 segundos
+  closeModal() {
+    setTimeout(() => {
+      this.success = false;
+    }, 99000);
+  }
+
   onSubmit() {
     // Verificamos si el formulario es válido antes de enviar los datos
     if (this.productForm.valid) {
-
       // Asignamos los valores del formulario al objeto producto
       Object.assign(this.product, this.productForm.value);
-
       // Eliminamos la ruta del archivo y nos quedamos con el nombre del archivo
       this.product.image = this.product.image.replace(/^.*[\\\/]/, '');
-
       // Añadimos la ruta de la imagen al objeto de producto
       this.product.image = './assets/images/' + this.product.image;
-
       // Añadimos el nuevo producto al array de productos
       this.products.push(this.product);
-
       // Enviamos los datos al servicio
       this.ProductsService.shareData.set(this.products);
-
+      // Mostramos el modal de éxito
+      this.success = true;
+      // Cerramos el modal de éxito transcurridos 3 segundos
+      this.closeModal();
       // Reiniciamos el formulario
       this.productForm.reset();
     }
