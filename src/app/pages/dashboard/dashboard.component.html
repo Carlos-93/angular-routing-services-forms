@@ -12,13 +12,13 @@
       <div class="flex flex-col gap-2 sm:w-[20rem] w-[17rem]">
         <label for="search" class="font-medium">Search Product</label>
         <input type="text" id="search" matInput name="search" placeholder="iPhone 15 Pro Max"
-          class="p-2 rounded-md border-2">
+          class="p-2 rounded-md border-2" (input)="searchProduct($event)">
       </div>
 
       <!-- Sort Product -->
       <div class="flex flex-col gap-2 w-[12rem]">
         <label for="sort" class="font-medium">Sort By</label>
-        <select id="sort" matInput name="sort" class="p-2 rounded-md border-2">
+        <select id="sort" matInput name="sort" class="p-2 rounded-md border-2" (change)="sortProducts($event)">
           <option disabled selected>Sort by</option>
           <option>Price: Low to High</option>
           <option>Price: High to Low</option>
@@ -66,7 +66,7 @@
       <div class="flex flex-col gap-2">
         <label for="reference" class="font-medium">Reference Number</label>
         <input type="text" id="reference" formControlName="reference" placeholder="54-001" autocomplete="off"
-          class="p-2 rounded-md border-2">
+          class="p-2 rounded-md border-2" (change)="checkReference()">
         <!-- Validación de referencia -->
         <span *ngIf="productForm.get('reference')?.errors?.['required'] && productForm.get('reference')?.touched"
           class="text-red-600 font-medium">Reference number is required</span>
@@ -74,6 +74,9 @@
           class="text-red-600 font-medium">Reference number must be at least 1 character long</span>
         <span *ngIf="productForm.get('reference')?.errors?.['maxlength'] && productForm.get('reference')?.touched"
           class="text-red-600 font-medium">Reference number cannot be more than 20 characters long</span>
+        <!-- Validadcion personalizada de referencia -->
+        <span *ngIf="productForm.get('reference')?.errors?.['uniqueReference'] && productForm.get('reference')?.touched"
+          class="text-red-600 font-medium">Reference number must start with a number</span>
       </div>
 
       <!-- Nombre del producto -->

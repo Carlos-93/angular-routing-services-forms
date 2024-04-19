@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule, ValidatorFn, AbstractControl } from '@angular/forms';
 import { ProductsService } from '../../services/products-service';
 import { Product } from '../../interfaces/product';
 import { Title } from '@angular/platform-browser';
@@ -33,9 +33,9 @@ export class DashboardComponent implements OnInit {
 
   // Configuramos el formulario con validaciones para cada campo
   productForm = new FormGroup({
-    reference: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(20)]),
+    reference: new FormControl('', { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(20), this.checkUniqueReference()] }),
     name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
-    price: new FormControl('', [Validators.required, Validators.min(0), Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]),
+    price: new FormControl(0, [Validators.required, Validators.min(0), Validators.pattern(/^[0-9]+(\.[0-9]{1,2})?$/)]),
     description: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(500)]),
     type: new FormControl('', [Validators.required]),
     offer: new FormControl(false),
@@ -50,6 +50,67 @@ export class DashboardComponent implements OnInit {
     this.titleService.setTitle('Apple (UK) - Admin Dashboard');
     // Obtenemos todos los productos y almacenamos los resultados en 'products'
     this.products = [...this.ProductsService.shareData()];
+  }
+
+  // Método para que la referencia del producto empiece por un número
+  checkUniqueReference(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const reference = control.value;
+      if (reference && !/^[0-9]/.test(reference)) {
+        return { 'uniqueReference': { value: control.value } };
+      }
+      return null;
+    };
+  }
+
+  // Método para comprobar si la referencia del producto ya existe
+  checkReference() {
+    const reference = this.productForm.get('reference')?.value;
+    const product = this.products.find(product => product.reference === reference);
+    if (product) {
+      this.productForm.setValue({
+        reference: product.reference,
+        name: product.name,
+        price: product.price,
+        description: product.description,
+        type: product.type,
+        offer: product.offer,
+        image: product.image
+      });
+    }
+  }
+
+  // Método para filtrar el producto Apple que introduzcamos en el input de búsqueda con id 'search'
+  searchProduct(event: any) {
+    // Obtenemos el valor del input de búsqueda
+    const search = event.target.value.toLowerCase();
+    // Filtramos los productos Apple por nombre o referencia
+    this.products = this.ProductsService.shareData().filter((product: Product) => {
+      return product.name.toLowerCase().includes(search) || product.reference.toLowerCase().includes(search);
+    });
+  }
+
+  // Método para ordenar los productos Apple por precio o nombre
+  sortProducts(event: any) {
+    // Obtenemos el valor del select de ordenación
+    const value = event.target.value;
+    // Obtenemos los productos una vez
+    const products = this.ProductsService.shareData();
+    // Ordenamos los productos Apple según el valor seleccionado en el select
+    switch (value) {
+      case 'Price: Low to High':
+        this.products = products.sort((a, b) => a.price - b.price);
+        break;
+      case 'Price: High to Low':
+        this.products = products.sort((a, b) => b.price - a.price);
+        break;
+      case 'Product Name: A to Z':
+        this.products = products.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case 'Product Name: Z to A':
+        this.products = products.sort((a, b) => b.name.localeCompare(a.name));
+        break;
+    }
   }
 
   // Método para seleccionar un archivo de imagen y obtener su nombre
