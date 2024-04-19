@@ -14,6 +14,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class DashboardComponent implements OnInit {
 
+  // Almacenamos el estado de éxito del modal
   success: boolean = false;
 
   // Almacenamos en products el array de productos Apple ubicado en el servicio
@@ -69,7 +70,7 @@ export class DashboardComponent implements OnInit {
   closeModal() {
     setTimeout(() => {
       this.success = false;
-    }, 99000);
+    }, 3000);
   }
 
   onSubmit() {
