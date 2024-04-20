@@ -90,25 +90,31 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  // Método para ordenar los productos Apple por precio o nombre
+  // Método para ordenar los productos Apple por precio, nombre o oferta
   sortProducts(event: any) {
     // Obtenemos el valor del select de ordenación
     const value = event.target.value;
     // Obtenemos los productos una vez
     const products = this.ProductsService.shareData();
-    // Ordenamos los productos Apple según el valor seleccionado en el select
+    // Ordenamos los productos según el valor seleccionado en el select
     switch (value) {
-      case 'Price: Low to High':
+      case 'Referencia':
+        this.products = products.sort((a, b) => a.reference.localeCompare(b.reference));
+        break;
+      case 'Precio Ascendente':
         this.products = products.sort((a, b) => a.price - b.price);
         break;
-      case 'Price: High to Low':
+      case 'Precio Descendente':
         this.products = products.sort((a, b) => b.price - a.price);
         break;
-      case 'Product Name: A to Z':
+      case 'Nombre Ascendente':
         this.products = products.sort((a, b) => a.name.localeCompare(b.name));
         break;
-      case 'Product Name: Z to A':
+      case 'Nombre Descendente':
         this.products = products.sort((a, b) => b.name.localeCompare(a.name));
+        break;
+      case 'Productos en Oferta':
+        this.products = products.filter(p => p.offer).concat(products.filter(p => !p.offer));
         break;
     }
   }
