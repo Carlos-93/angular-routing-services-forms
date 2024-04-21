@@ -24,7 +24,7 @@ export class IpadComponent {
     this.titleService.setTitle('Apple (España) - iPad');
 
     // Obtenemos todos los productos y almacenamos los resultados en 'products'
-    this.products = [...this.ProductsService.shareData()];
+    this.products = [...this.ProductsService.productSignal()];
 
     // Filtramos los productos para incluir solo aquellos del tipo 'iPad'
     this.products = this.products.filter(product => product.type === 'iPad');

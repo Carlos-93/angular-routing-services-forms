@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
   showPopup: boolean = false;
   popupMessage: string = '';
 
+  // Establecemos el título de la página y configuramos el formulario de productos Apple con validaciones
   constructor(private titleService: Title, private ProductsService: ProductsService) {
     this.productForm = new FormGroup({
       reference: new FormControl('', { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(20), this.referenceStartNumber()] }),
@@ -33,14 +34,17 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  // Inicializamos el objeto producto con valores por defecto
   product: Product = {
     reference: '', name: '', price: 0, description: '', type: '', offer: false, image: ''
   };
 
-  // Método para comprobar si la referencia del producto introducido empieza por un número
   referenceStartNumber(): ValidatorFn {
+    // Método para comprobar si la referencia del producto introducido empieza por un número
     return (control: AbstractControl): { [key: string]: any } | null => {
+      // Obtenemos la referencia del producto
       const reference = control.value;
+      // Si la referencia no empieza por un número, devolvemos un error
       if (reference && !/^[0-9]/.test(reference)) {
         return { 'uniqueReference': { value: control.value } };
       }
@@ -48,26 +52,21 @@ export class DashboardComponent implements OnInit {
     };
   }
 
-
-
-
-  // Método para filtrar el producto Apple que introduzcamos en el input de búsqueda con id 'search'
   searchProduct(event: any) {
-    // Obtenemos el valor del input de búsqueda
+    // Método para buscar productos Apple en el array de productos
     const search = event.target.value.toLowerCase();
     // Filtramos los productos Apple por nombre o referencia
-    this.products = this.ProductsService.shareData().filter((product: Product) => {
+    this.products = this.ProductsService.productSignal().filter((product: Product) => {
       return product.name.toLowerCase().includes(search) || product.reference.toLowerCase().includes(search);
     });
   }
 
-  // Método para ordenar los productos Apple por precio, nombre o oferta
   sortProducts(event: any) {
-    // Obtenemos el valor del select de ordenación
+    // Método para ordenar los productos Apple por precio, nombre o oferta
     const value = event.target.value;
-    // Obtenemos los productos una vez
-    const products = this.ProductsService.shareData();
-    // Ordenamos los productos según el valor seleccionado en el select
+    // Obtenemos los productos Apple a través del servicio
+    const products = this.ProductsService.productSignal();
+
     switch (value) {
       case 'Referencia':
         this.products = products.sort((a, b) => a.reference.localeCompare(b.reference));
@@ -104,18 +103,17 @@ export class DashboardComponent implements OnInit {
     // Método para eliminar un producto Apple del array de productos
     this.products.splice(index, 1);
     // Enviamos la eliminación del producto al servicio
-    this.ProductsService.shareData.set(this.products);
+    this.ProductsService.productSignal.set(this.products);
   }
 
   ngOnInit(): void {
     // Establecemos el título de la página
     this.titleService.setTitle('Apple (España) - Admin Panel');
     // Obtenemos los productos Apple a través del servicio
-    this.products = this.ProductsService.shareData();
+    this.products = this.ProductsService.productSignal();
   }
 
   onSubmit() {
-    // Verificamos si el formulario es válido antes de enviar los datos
     if (this.productForm.valid) {
       // Verificamos si estamos editando un producto o añadiendo uno nuevo
       if (this.isEditing) {
@@ -123,40 +121,43 @@ export class DashboardComponent implements OnInit {
       } else {
         this.addNewProduct();
       }
-      // Mostramos el popup
       this.showPopup = true;
-      // Mostramos el mensaje en el popup dependiendo si estamos editando o añadiendo un producto
+      // Mostramos un mensaje de confirmación en el popup
       this.popupMessage = this.isEditing ? 'Producto editado correctamente' : 'Producto añadido correctamente';
       // El popup se ocultará automáticamente después de 3 segundos
       setTimeout(() => { this.showPopup = false; }, 3000);
-      // Reiniciamos el formulario y el estado de edición
+      // Reiniciamos el estado de edición y el formulario
       this.isEditing = false;
       this.productForm.reset();
     }
   }
 
   addNewProduct() {
-    // Método para añadir un nuevo producto Apple
-    Object.assign(this.product, this.productForm.value);
+    // Creamos un nuevo producto Apple con los datos del formulario
+    const newProduct: Product = this.createProductForm();
     // Eliminamos la ruta del archivo y nos quedamos con el nombre del archivo
-    this.product.image = this.product.image.replace(/^.*[\\\/]/, '');
+    newProduct.image = newProduct.image.replace(/^.*[\\\/]/, '');
     // Añadimos la ruta de la imagen al objeto de producto
-    this.product.image = './assets/images/' + this.product.image;
+    newProduct.image = './assets/images/' + newProduct.image;
     // Añadimos el nuevo producto al array de productos
-    this.products.push(this.product);
-    // Enviamos los datos al servicio
-    this.ProductsService.shareData.set(this.products);
+    this.products.push(newProduct);
+    // Enviamos el nuevo producto al servicio
+    this.ProductsService.productSignal.set(this.products);
   }
 
   updateProduct() {
-    // Método para actualizar un producto Apple ya existente
+    // Creamos un producto Apple con los datos del formulario
     const updateProduct: Product = this.createProductForm();
+    // Eliminamos la ruta del archivo y nos quedamos con el nombre del archivo
     updateProduct.image = updateProduct.image.replace(/^.*[\\\/]/, '');
+    // Añadimos la ruta de la imagen al objeto de producto
     updateProduct.image = './assets/images/' + updateProduct.image;
-
+    // Obtenemos el índice del producto a actualizar
     const index = this.products.findIndex(product => product.reference === updateProduct.reference);
+    // Actualizamos el producto en el array de productos
     this.products[index] = updateProduct;
-    this.ProductsService.shareData.set(this.products);
+    // Enviamos el producto actualizado al servicio
+    this.ProductsService.productSignal.set(this.products);
   }
 
   createProductForm(): Product {
@@ -172,8 +173,8 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  referenceExists() {
-    // Método para comprobar si la referencia del producto ya existe
+  searchReference() {
+    // Buscamos la referencia del producto en el array de productos
     const reference = this.productForm.value.reference;
     // Comprobamos si la referencia ya existe en el array de productos
     const product = this.products.find(product => product.reference === reference);

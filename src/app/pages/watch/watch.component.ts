@@ -24,7 +24,7 @@ export class WatchComponent {
     this.titleService.setTitle('Apple (España) - Apple Watch');
 
     // Obtenemos todos los productos y almacenamos los resultados en 'products'
-    this.products = [...this.ProductsService.shareData()];
+    this.products = [...this.ProductsService.productSignal()];
 
     // Filtramos los productos para incluir solo aquellos del tipo 'Apple Watch'
     this.products = this.products.filter(product => product.type === 'Apple Watch');

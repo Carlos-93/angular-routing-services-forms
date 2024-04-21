@@ -24,7 +24,7 @@ export class MacComponent {
     this.titleService.setTitle('Apple (España) - MacBook');
 
     // Obtenemos todos los productos y almacenamos los resultados en 'products'
-    this.products = [...this.ProductsService.shareData()];
+    this.products = [...this.ProductsService.productSignal()];
 
     // Filtramos los productos para incluir solo aquellos del tipo 'Mac'
     this.products = this.products.filter(product => product.type === 'Mac');

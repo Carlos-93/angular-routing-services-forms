@@ -146,7 +146,7 @@ export class ProductsService {
   ];
 
   // Signal para compartir los productos Apple entre componentes hermanos
-  shareData = signal<Product[]>(this.products);
+  productSignal = signal<Product[]>(this.products);
 
   constructor() { }
 }

@@ -76,7 +76,7 @@
       <div class="flex flex-col gap-2">
         <label for="reference" class="font-medium">Nº Referencia</label>
         <input type="text" id="reference" formControlName="reference" placeholder="54-001" autocomplete="off"
-          class="p-2 rounded-md border-2" (change)="referenceExists()">
+          class="p-2 rounded-md border-2" (change)="searchReference()">
         <!-- Validación de referencia -->
         <p *ngIf="productForm.get('reference')?.errors?.['required'] && productForm.get('reference')?.touched"
           class="text-red-600 font-medium">El número de referencia es obligatorio</p>
