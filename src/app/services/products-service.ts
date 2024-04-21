@@ -5,6 +5,7 @@ import { Product } from '../interfaces/product';
   providedIn: 'root'
 })
 export class ProductsService {
+
   // Array de objetos de productos Apple
   products: Product[] = [
     {
@@ -25,18 +26,17 @@ export class ProductsService {
       offer: true,
       image: './assets/images/iphone15.png'
     },
-    // Nuevo producto iPhone
-    {
-      reference: '53-011',
-      name: 'iPhone 15 Mini',
-      price: 699.99,
-      description: 'El iPhone 15 Mini es el smartphone compacto más potente y avanzado jamás creado por Apple',
-      type: 'iPhone',
-      offer: false,
-      image: './assets/images/iphone15-mini.png'
-    },
     {
       reference: '53-003',
+      name: 'iPhone 15 Plus',
+      price: 1099.99,
+      description: 'El iPhone 15 Plus es el smartphone más potente y avanzado jamás creado por Apple',
+      type: 'iPhone',
+      offer: false,
+      image: './assets/images/iphone15-plus.png'
+    },
+    {
+      reference: '53-004',
       name: 'MacBook Pro M3',
       price: 1999.99,
       description: 'El MacBook Pro M3 es el portátil más potente y avanzado jamás creado por Apple',
@@ -45,7 +45,7 @@ export class ProductsService {
       image: './assets/images/macbook-pro-m3.png'
     },
     {
-      reference: '53-004',
+      reference: '53-005',
       name: 'MacBook Air M3',
       price: 999.99,
       description: 'El MacBook Air M3 es el portátil más potente y avanzado jamás creado por Apple',
@@ -53,18 +53,17 @@ export class ProductsService {
       offer: true,
       image: './assets/images/macbook-air-m3.png'
     },
-    // Nuevo producto Mac
     {
-      reference: '53-012',
-      name: 'MacBook Pro M3 Max',
-      price: 2499.99,
-      description: 'El MacBook Pro M3 Max es el portátil de máximo rendimiento jamás creado por Apple',
+      reference: '53-006',
+      name: 'MacBook Pro M2',
+      price: 1499.99,
+      description: 'El MacBook Pro M2 es el portátil más potente y avanzado jamás creado por Apple',
       type: 'Mac',
       offer: false,
-      image: './assets/images/macbook-pro-m3-max.png'
+      image: './assets/images/macbook-pro-m2.png'
     },
     {
-      reference: '53-005',
+      reference: '53-007',
       name: 'iPad Pro',
       price: 799.99,
       description: 'El iPad Pro es la tablet más potente y avanzada jamás creada por Apple',
@@ -73,7 +72,7 @@ export class ProductsService {
       image: './assets/images/ipad-pro.png'
     },
     {
-      reference: '53-006',
+      reference: '53-008',
       name: 'iPad Air',
       price: 499.99,
       description: 'El iPad Air es la tablet más potente y avanzada jamás creada por Apple',
@@ -81,9 +80,8 @@ export class ProductsService {
       offer: true,
       image: './assets/images/ipad-air.png'
     },
-    // Nuevo producto iPad
     {
-      reference: '53-013',
+      reference: '53-009',
       name: 'iPad Mini',
       price: 399.99,
       description: 'El iPad Mini es la tablet compacta más potente y avanzada jamás creada por Apple',
@@ -92,7 +90,7 @@ export class ProductsService {
       image: './assets/images/ipad-mini.png'
     },
     {
-      reference: '53-007',
+      reference: '53-010',
       name: 'Apple Watch Ultra 2',
       price: 399.99,
       description: 'El Apple Watch Ultra 2 es el smartwatch más potente y avanzado jamás creado por Apple',
@@ -101,7 +99,7 @@ export class ProductsService {
       image: './assets/images/watch-ultra-2.png'
     },
     {
-      reference: '53-008',
+      reference: '53-011',
       name: 'Apple Watch SE',
       price: 199.99,
       description: 'El Apple Watch SE es el smartwatch más potente y avanzado jamás creado por Apple',
@@ -109,9 +107,8 @@ export class ProductsService {
       offer: true,
       image: './assets/images/watch-se.png'
     },
-    // Nuevo producto Apple Watch
     {
-      reference: '53-014',
+      reference: '53-012',
       name: 'Apple Watch Series 7',
       price: 499.99,
       description: 'El Apple Watch Series 7 es el smartwatch más avanzado y con más funcionalidades jamás creado por Apple',
@@ -120,7 +117,7 @@ export class ProductsService {
       image: './assets/images/watch-series7.png'
     },
     {
-      reference: '53-009',
+      reference: '53-013',
       name: 'AirPods Pro 2ª Gen',
       price: 199.99,
       description: 'Los AirPods Pro 2ª Gen son los auriculares inalámbricos más potentes y avanzados jamás creados por Apple',
@@ -129,7 +126,7 @@ export class ProductsService {
       image: './assets/images/airpods-pro-2gen.png'
     },
     {
-      reference: '53-010',
+      reference: '53-014',
       name: 'AirPods 3ª Gen',
       price: 299.99,
       description: 'Los AirPods 3ª Gen son los auriculares inalámbricos más potentes y avanzados jamás creados por Apple',
@@ -137,7 +134,6 @@ export class ProductsService {
       offer: true,
       image: './assets/images/airpods-3gen.png'
     },
-    // Nuevo producto AirPods
     {
       reference: '53-015',
       name: 'AirPods Max',

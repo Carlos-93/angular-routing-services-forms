@@ -18,10 +18,10 @@ export class FooterComponent {
   year: number = new Date().getFullYear();
 
   // Propiedad para el nombre del sitio web
-  username: string = "Carlos Araujo™";
+  username: string = "Carlos Araujo Galván™";
 
   // Propiedad para el texto de derechos de autor
-  copyright: string = "All Rights Reserved.";
+  copyright: string = "Todos los derechos reservados.";
 
   // Array de objetos con los enlaces de recursos
   resourcesLinks = [
