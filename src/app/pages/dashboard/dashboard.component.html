@@ -1,8 +1,8 @@
 <!-- Admin Dashboard Page -->
 <div class="relative w-full">
   <h1
-    class="absolute inset-0 hidden lg:flex justify-end items-center mr-[5vw] xl:text-4xl text-2xl font-semibold italic text-rose-700">
-    Admin Dashboard</h1>
+    class="absolute inset-0 hidden lg:flex justify-end items-center mr-[7vw] xl:text-4xl text-2xl font-semibold italic">
+    Admin Panel</h1>
   <img src="./assets/images/banner-home.webp" alt="Banner Angular 17" class="banner-shadow ml-auto mr-auto w-full">
 </div>
 
@@ -15,21 +15,21 @@
 
       <!-- Search Product -->
       <div class="flex flex-col gap-2 sm:w-[20rem] w-[17rem]">
-        <label for="search" class="font-medium">Buscar Producto</label>
+        <label for="search" class="font-medium">Buscar dispositivo</label>
         <input type="text" id="search" matInput name="search" placeholder="iPhone 15 Pro Max"
           class="p-2 rounded-md border-2" (input)="searchProduct($event)">
       </div>
 
       <!-- Sort Product -->
       <div class="flex flex-col gap-2 w-[12rem]">
-        <label for="sort" class="font-medium">Ordenar Por</label>
+        <label for="sort" class="font-medium">Ordenar por</label>
         <select id="sort" matInput name="sort" class="p-2 rounded-md border-2" (change)="sortProducts($event)">
           <option>Referencia</option>
           <option>Precio Ascendente</option>
           <option>Precio Descendente</option>
           <option>Nombre Ascendente</option>
           <option>Nombre Descendente</option>
-          <option>Productos en Oferta</option>
+          <option>Dispositivos en Oferta</option>
         </select>
       </div>
     </div>
@@ -70,13 +70,13 @@
   <!-- Product Form -->
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="flex flex-col items-center lg:w-[45rem]">
     <h2 class="md:text-2xl text-xl text-center mb-10 font-semibold">Añadir Dispositivo</h2>
-    <div class="flex flex-col gap-5 text-sm sm:w-[27rem]">
+    <div class="flex flex-col gap-5 text-sm sm:w-[28rem]">
 
       <!-- Número de referencia -->
       <div class="flex flex-col gap-2">
         <label for="reference" class="font-medium">Nº Referencia</label>
         <input type="text" id="reference" formControlName="reference" placeholder="54-001" autocomplete="off"
-          class="p-2 rounded-md border-2" (change)="checkReference()">
+          class="p-2 rounded-md border-2" (change)="referenceExists()">
         <!-- Validación de referencia -->
         <p *ngIf="productForm.get('reference')?.errors?.['required'] && productForm.get('reference')?.touched"
           class="text-red-600 font-medium">El número de referencia es obligatorio</p>
@@ -89,18 +89,18 @@
           class="text-red-600 font-medium">El número de referencia debe comenzar por un número</p>
       </div>
 
-      <!-- Nombre del producto -->
+      <!-- Modelo del dispositivo -->
       <div class="flex flex-col gap-2">
         <label for="name" class="font-medium">Modelo</label>
         <input type="text" id="name" formControlName="name" placeholder="MacBook Pro M3" autocomplete="off"
           class="p-2 rounded-md border-2">
-        <!-- Validación de nombre -->
+        <!-- Validación de modelo -->
         <p *ngIf="productForm.get('name')?.errors?.['required'] && productForm.get('name')?.touched"
-          class="text-red-600 font-medium">El nombre del producto es obligatorio</p>
+          class="text-red-600 font-medium">El modelo del dispositivo es obligatorio</p>
         <p *ngIf="productForm.get('name')?.errors?.['minlength'] && productForm.get('name')?.touched"
-          class="text-red-600 font-medium">El nombre del producto debe tener al menos 3 caracteres</p>
+          class="text-red-600 font-medium">El modelo del dispositivo debe tener al menos 3 caracteres</p>
         <p *ngIf="productForm.get('name')?.errors?.['maxlength'] && productForm.get('name')?.touched"
-          class="text-red-600 font-medium">El nombre del producto no puede tener más de 50 caracteres</p>
+          class="text-red-600 font-medium">El modelo del dispositivo no puede tener más de 50 caracteres</p>
       </div>
 
       <!-- Precio -->
@@ -132,7 +132,7 @@
           class="text-red-600 font-medium">La descripción no puede tener más de 500 caracteres</p>
       </div>
 
-      <!-- Tipo de producto -->
+      <!-- Tipo de dispositivo -->
       <div class="flex flex-col gap-2">
         <label for="type" class="font-medium">Tipo de dispositivo</label>
         <select id="type" formControlName="type" autocomplete="off" class="p-2 rounded-md border-2">
@@ -143,19 +143,19 @@
           <option value="Watch">Watch</option>
           <option value="AirPods">AirPods</option>
         </select>
-        <!-- Validación de tipo de producto -->
+        <!-- Validación de tipo de dispositivo -->
         <p *ngIf="productForm.get('type')?.errors?.['required'] && productForm.get('type')?.touched"
-          class="text-red-600 font-medium">El tipo de producto es obligatorio</p>
+          class="text-red-600 font-medium">El tipo de dispositivo es obligatorio</p>
       </div>
 
-      <!-- Oferta de producto -->
+      <!-- Oferta de dispositivo -->
       <div class="flex items-center gap-2">
         <label for="offer" class="font-medium cursor-pointer">Dispositivo en oferta</label>
         <input id="offer" type="checkbox" formControlName="offer"
           class="h-5 w-5 rounded border-2 checked:bg-rose-500 cursor-pointer">
       </div>
 
-      <!-- Agregar imagen de producto -->
+      <!-- Agregar imagen del dispositivo -->
       <div class="flex flex-col gap-2">
         <label for="image" class="font-medium">Imagen</label>
         <input type="file" id="image" formControlName="image" autocomplete="off" (change)="onFileSelected($event)"
