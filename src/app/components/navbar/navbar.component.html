@@ -1,14 +1,14 @@
 <!-- Navbar component -->
 <nav class="bg-gray-800 flex justify-between items-center w-full px-4 py-2 text-white">
     <!-- Home link visible only in mobile view -->
-    <a class="text-gray-300 hover:text-white lg:hidden" routerLink="/home" routerLinkActive="text-white font-medium">Home</a>
+    <a class="text-gray-300 hover:text-white lg:hidden" routerLink="/home" routerLinkActive="text-white font-medium">Inicio</a>
 
     <!-- Desktop Navbar: Centered -->
     <ul class="hidden lg:flex gap-5 lg:gap-20 items-center justify-center flex-1 text-gray-300 text-sm xl:text-base">
         <li><a routerLink="/home"    routerLinkActive="text-white font-medium"
-                class="cursor-pointer hover:text-white transition-all ease-in-out duration-300 text-gray-300">Home</a></li>
+                class="cursor-pointer hover:text-white transition-all ease-in-out duration-300 text-gray-300">Inicio</a></li>
         <li><a routerLink="/mac"     routerLinkActive="text-white font-medium"
-                class="cursor-pointer hover:text-white transition-all ease-in-out duration-300 text-gray-300">Mac</a></li>
+                class="cursor-pointer hover:text-white transition-all ease-in-out duration-300 text-gray-300">MacBook</a></li>
         <li><a routerLink="/ipad"    routerLinkActive="text-white font-medium"
                 class="cursor-pointer hover:text-white transition-all ease-in-out duration-300 text-gray-300">iPad</a></li>
         <li><a routerLink="/iphone"  routerLinkActive="text-white font-medium"
@@ -32,7 +32,7 @@
     <ul id="mobile-menu" class="lg:hidden flex flex-col gap-5 bg-gray-800 text-gray-300 absolute top-full right-0 w-56 px-4 py-2 z-20"
         [class.hidden]="!showMenu">
         <li><a routerLink="/mac"        routerLinkActive="text-white font-medium"
-                class="cursor-pointer hover:text-white transition-all ease-in-out duration-300 text-gray-300">Mac</a></li>
+                class="cursor-pointer hover:text-white transition-all ease-in-out duration-300 text-gray-300">MacBook</a></li>
         <li><a routerLink="/ipad"       routerLinkActive="text-white font-medium"
                 class="cursor-pointer hover:text-white transition-all ease-in-out duration-300 text-gray-300">iPad</a></li>
         <li><a routerLink="/iphone"     routerLinkActive="text-white font-medium"

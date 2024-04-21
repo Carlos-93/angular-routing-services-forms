@@ -15,5 +15,5 @@ export class HomeComponent implements OnInit {
   constructor(private titleService: Title) { }
 
   // Establecemos el título de la página usando el servicio Title
-  ngOnInit() { this.titleService.setTitle('Apple (UK) - Home Page'); }
+  ngOnInit() { this.titleService.setTitle('Apple (España) - Inicio'); }
 }

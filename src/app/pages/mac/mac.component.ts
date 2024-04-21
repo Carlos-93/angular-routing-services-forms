@@ -21,7 +21,7 @@ export class MacComponent {
 
   ngOnInit() {
     // Establecemos el título de la página usando el servicio Title
-    this.titleService.setTitle('Apple (UK) - Our MacBooks');
+    this.titleService.setTitle('Apple (España) - MacBook');
 
     // Obtenemos todos los productos y almacenamos los resultados en 'products'
     this.products = [...this.ProductsService.shareData()];

@@ -21,7 +21,7 @@ export class IphoneComponent {
 
   ngOnInit() {
     // Establecemos el título de la página usando el servicio Title
-    this.titleService.setTitle('Apple (UK) - Our iPhones');
+    this.titleService.setTitle('Apple (España) - iPhone');
 
     // Obtenemos todos los productos y almacenamos los resultados en 'products'
     this.products = [...this.ProductsService.shareData()];

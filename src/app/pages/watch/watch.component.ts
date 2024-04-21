@@ -21,7 +21,7 @@ export class WatchComponent {
 
   ngOnInit() {
     // Establecemos el título de la página usando el servicio Title
-    this.titleService.setTitle('Apple (UK) - Our Apple Watch');
+    this.titleService.setTitle('Apple (España) - Apple Watch');
 
     // Obtenemos todos los productos y almacenamos los resultados en 'products'
     this.products = [...this.ProductsService.shareData()];

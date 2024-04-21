@@ -21,7 +21,7 @@ export class AirpodsComponent {
 
   ngOnInit() {
     // Establecemos el título de la página usando el servicio Title
-    this.titleService.setTitle('Apple (UK) - Our AirPods');
+    this.titleService.setTitle('Apple (España) - Airpods');
 
     // Obtenemos todos los productos y almacenamos los resultados en 'products'
     this.products = [...this.ProductsService.shareData()];
