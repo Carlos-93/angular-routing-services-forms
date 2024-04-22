@@ -27,5 +27,7 @@ export class IphoneComponent {
 
     // Filtramos los productos para incluir solo aquellos de tipo 'iPhone'
     this.products = this.products.filter(product => product.type === 'iPhone');
+
+    window.scrollTo(0, 0);
   }
 }

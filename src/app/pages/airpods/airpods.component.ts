@@ -27,5 +27,7 @@ export class AirpodsComponent {
 
     // Filtramos los productos para incluir solo aquellos de tipo 'AirPods'
     this.products = this.products.filter(product => product.type === 'AirPods');
+
+    window.scrollTo(0, 0);
   }
 }

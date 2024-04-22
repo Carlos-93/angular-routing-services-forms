@@ -27,5 +27,7 @@ export class MacComponent {
 
     // Filtramos los productos para incluir solo aquellos de tipo 'Mac'
     this.products = this.products.filter(product => product.type === 'Mac');
+
+    window.scrollTo(0, 0);
   }
 }
