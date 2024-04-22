@@ -84,7 +84,7 @@ export class DashboardComponent implements OnInit {
       case 'Nombre Descendente':
         this.products = products.sort((a, b) => b.name.localeCompare(a.name));
         break;
-      case 'Productos en Oferta':
+      case 'Dispositivos en Oferta':
         this.products = products.filter(p => p.offer).concat(products.filter(p => !p.offer));
         break;
     }
