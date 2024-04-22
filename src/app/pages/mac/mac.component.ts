@@ -13,20 +13,19 @@ import { Title } from '@angular/platform-browser';
 })
 export class MacComponent {
 
-  // Inicializamos el array para almacenar productos Apple de tipo Mac
   products: Product[] = [];
 
-  // Inyectamos el servicio Title y ProductsService para usar en el componente
+  // Establecemos el título de la página y obtenemos los productos desde el servicio
   constructor(private titleService: Title, private ProductsService: ProductsService) { }
 
   ngOnInit() {
-    // Establecemos el título de la página usando el servicio Title
+    // Establecemos el título de la página
     this.titleService.setTitle('Apple (España) - MacBook');
 
-    // Obtenemos todos los productos y almacenamos los resultados en 'products'
-    this.products = [...this.ProductsService.productSignal()];
+    // Obtenemos los productos desde el servicio y los almacenamos
+    this.products = this.ProductsService.productSignal();
 
-    // Filtramos los productos para incluir solo aquellos del tipo 'Mac'
+    // Filtramos los productos para incluir solo aquellos de tipo 'Mac'
     this.products = this.products.filter(product => product.type === 'Mac');
   }
 }

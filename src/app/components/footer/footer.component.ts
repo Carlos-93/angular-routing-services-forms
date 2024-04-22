@@ -31,20 +31,20 @@ export class FooterComponent {
 
   // Array de objetos con los enlaces de seguimiento
   trackingLinks = [
-    { name: "Github", url: "https://github.com/themesberg/flowbite" },
-    { name: "Discord", url: "https://discord.gg/4eeurUVvTy" }
+    { name: "Github", url: "https://github.com/Carlos-93" },
+    { name: "Linkedin", url: "https://www.linkedin.com/in/carlos-araujo-galvan" }
   ];
 
   // Array de objetos con los enlaces legales
   legalLinks = [
-    { name: "Privacy Policy", url: "#" },
-    { name: "Terms & Conditions", url: "#" }
+    { name: "Política de Privacidad", url: "#" },
+    { name: "Términos & Condiciones", url: "#" }
   ];
 
   // Array de objetos con los enlaces de mis redes sociales
   socialLinks = [
     { name: "Facebook", url: "https://www.facebook.com/carlos.araujo.bcn", icon: "/assets/images/facebook.png" },
-    { name: "Instagram", url: "https://www.instagram.com/carloos_93/", icon: "/assets/images/instagram.png" },
+    { name: "Instagram", url: "https://www.instagram.com/carloos_93", icon: "/assets/images/instagram.png" },
     { name: "Github", url: "https://github.com/Carlos-93", icon: "/assets/images/github.png" },
     { name: "Linkedin", url: "https://www.linkedin.com/in/carlos-araujo-galvan/", icon: "/assets/images/linkedin.png" },
     { name: "YouTube", url: "https://www.youtube.com/channel/UCdJ7371WOCb_XfPEv-Cm3Yw", icon: "/assets/images/youtube.png" }

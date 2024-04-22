@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
 
   productForm: FormGroup;
   products = this.ProductsService.products;
+
   isEditing: boolean = false;
   showPopup: boolean = false;
   popupMessage: string = '';
@@ -89,7 +90,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  onFileSelected(event: any) {
+  selectImage(event: any) {
     // Método para seleccionar un archivo de imagen y obtener su nombre
     if (event.target.files.length > 0) {
       // Obtenemos el archivo seleccionado
