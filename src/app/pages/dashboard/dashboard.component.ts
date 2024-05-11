@@ -65,27 +65,25 @@ export class DashboardComponent implements OnInit {
   sortProducts(event: any) {
     // Método para ordenar los productos Apple por precio, nombre o oferta
     const value = event.target.value;
-    // Obtenemos los productos Apple a través del servicio
-    const products = this.ProductsService.productSignal();
-
+    // Ordenamos los productos Apple según el valor seleccionado
     switch (value) {
       case 'Referencia':
-        this.products = products.sort((a, b) => a.reference.localeCompare(b.reference));
+        this.products = [...this.products].sort((a, b) => a.reference.localeCompare(b.reference));
         break;
       case 'Precio Ascendente':
-        this.products = products.sort((a, b) => a.price - b.price);
+        this.products = [...this.products].sort((a, b) => a.price - b.price);
         break;
       case 'Precio Descendente':
-        this.products = products.sort((a, b) => b.price - a.price);
+        this.products = [...this.products].sort((a, b) => b.price - a.price);
         break;
       case 'Nombre Ascendente':
-        this.products = products.sort((a, b) => a.name.localeCompare(b.name));
+        this.products = [...this.products].sort((a, b) => a.name.localeCompare(b.name));
         break;
       case 'Nombre Descendente':
-        this.products = products.sort((a, b) => b.name.localeCompare(a.name));
+        this.products = [...this.products].sort((a, b) => b.name.localeCompare(a.name));
         break;
       case 'Dispositivos en Oferta':
-        this.products = products.filter(p => p.offer).concat(products.filter(p => !p.offer));
+        this.products = [...this.products].filter(p => p.offer).concat(this.products.filter(p => !p.offer));
         break;
     }
   }
@@ -109,7 +107,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     // Establecemos el título de la página
-    this.titleService.setTitle('Apple (España) - Admin Panel');
+    this.titleService.setTitle('Apple (España) - Panel de Control');
     // Obtenemos los productos Apple a través del servicio
     this.products = this.ProductsService.productSignal();
   }
