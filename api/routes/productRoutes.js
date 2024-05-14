@@ -5,7 +5,10 @@ const db = require('../config/db');
 // Método GET para obtener todos los productos
 router.get('/products', (req, res) => {
     db.query('SELECT * FROM products', (err, results) => {
-        if (err) return res.status(500).send(err);
+        if (err) {
+            console.error('Database error:', err);
+            return res.status(500).json({ error: 'Database error', details: err });
+        }
         res.json(results);
     });
 });
@@ -14,8 +17,13 @@ router.get('/products', (req, res) => {
 router.get('/products/:reference', (req, res) => {
     const reference = req.params.reference;
     db.query('SELECT * FROM products WHERE reference = ?', [reference], (err, results) => {
-        if (err) return res.status(500).send(err);
-        if (results.length === 0) return res.status(404).send('Product not found');
+        if (err) {
+            console.error('Database error:', err);
+            return res.status(500).json({ error: 'Database error', details: err });
+        }
+        if (results.length === 0) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
         res.json(results[0]);
     });
 });
@@ -24,8 +32,11 @@ router.get('/products/:reference', (req, res) => {
 router.post('/products', (req, res) => {
     const productData = req.body;
     db.query('INSERT INTO products SET ?', productData, (err, results) => {
-        if (err) return res.status(500).send(err);
-        res.status(201).send('Product created');
+        if (err) {
+            console.error('Database error:', err);
+            return res.status(500).json({ error: 'Database error', details: err });
+        }
+        res.status(201).json({ message: 'Product created', productId: results.insertId });
     });
 });
 
@@ -34,8 +45,14 @@ router.put('/products/:reference', (req, res) => {
     const reference = req.params.reference;
     const productData = req.body;
     db.query('UPDATE products SET ? WHERE reference = ?', [productData, reference], (err, results) => {
-        if (err) return res.status(500).send(err);
-        res.send('Product updated');
+        if (err) {
+            console.error('Database error:', err);
+            return res.status(500).json({ error: 'Database error', details: err });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+        res.json({ message: 'Product updated' });
     });
 });
 
@@ -43,8 +60,14 @@ router.put('/products/:reference', (req, res) => {
 router.delete('/products/:reference', (req, res) => {
     const reference = req.params.reference;
     db.query('DELETE FROM products WHERE reference = ?', [reference], (err, results) => {
-        if (err) return res.status(500).send(err);
-        res.send('Product deleted');
+        if (err) {
+            console.error('Database error:', err);
+            return res.status(500).json({ error: 'Database error', details: err });
+        }
+        if (results.affectedRows === 0) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
+        res.json({ message: 'Product deleted' });
     });
 });
 
