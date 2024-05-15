@@ -13,6 +13,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class AirpodsComponent {
 
+  // Inicializamos un array vacío para almacenar los productos Apple
   products: Product[] = [];
 
   // Establecemos el título de la página y obtenemos los productos desde el servicio

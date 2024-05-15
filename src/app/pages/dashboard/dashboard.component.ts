@@ -14,9 +14,9 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  
+  products: Product[] = [];
   productForm: FormGroup;
-  products = this.ProductsService.products;
 
   isEditing: boolean = false;
   showPopup: boolean = false;
@@ -109,7 +109,7 @@ export class DashboardComponent implements OnInit {
     // Establecemos el título de la página
     this.titleService.setTitle('Apple (España) - Panel de Control');
     // Obtenemos los productos Apple a través de la API
-    this.ProductsService.getProducts();
+    this.ProductsService.getAllProducts();
     // Obtenemos los productos Apple del servicio
     this.products = this.ProductsService.productSignal();
   }
@@ -140,9 +140,9 @@ export class DashboardComponent implements OnInit {
     newProduct.image = newProduct.image.replace(/^.*[\\\/]/, '');
     // Añadimos la ruta de la imagen al objeto de producto
     newProduct.image = './assets/images/' + newProduct.image;
-    // Añadimos el nuevo producto al servicio
-    this.ProductsService.createProduct(newProduct);
-    // Enviamos el array de productos al servicio
+    // Añadimos el nuevo producto al array de productos
+    this.products.push(newProduct);
+    // Enviamos el nuevo producto al servicio
     this.ProductsService.productSignal.set(this.products);
   }
 
