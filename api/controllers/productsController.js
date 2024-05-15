@@ -1,9 +1,7 @@
-const express = require('express');
-const router = express.Router();
 const db = require('../config/db');
 
 // Método GET para obtener todos los productos
-router.get('/products', (req, res) => {
+exports.getAllProducts = (req, res) => {
     db.query('SELECT * FROM products', (err, results) => {
         if (err) {
             console.error('Database error:', err);
@@ -11,10 +9,10 @@ router.get('/products', (req, res) => {
         }
         res.json(results);
     });
-});
+};
 
 // Método GET para obtener un producto por referencia
-router.get('/products/:reference', (req, res) => {
+exports.getProductByReference = (req, res) => {
     const reference = req.params.reference;
     db.query('SELECT * FROM products WHERE reference = ?', [reference], (err, results) => {
         if (err) {
@@ -26,10 +24,10 @@ router.get('/products/:reference', (req, res) => {
         }
         res.json(results[0]);
     });
-});
+};
 
 // Método POST para crear un producto
-router.post('/products', (req, res) => {
+exports.createProduct = (req, res) => {
     const productData = req.body;
     db.query('INSERT INTO products SET ?', productData, (err, results) => {
         if (err) {
@@ -38,10 +36,10 @@ router.post('/products', (req, res) => {
         }
         res.status(201).json({ message: 'Product created', productId: results.insertId });
     });
-});
+};
 
 // Método PUT para actualizar un producto por referencia
-router.put('/products/:reference', (req, res) => {
+exports.updateProduct = (req, res) => {
     const reference = req.params.reference;
     const productData = req.body;
     db.query('UPDATE products SET ? WHERE reference = ?', [productData, reference], (err, results) => {
@@ -54,10 +52,10 @@ router.put('/products/:reference', (req, res) => {
         }
         res.json({ message: 'Product updated' });
     });
-});
+};
 
 // Método DELETE para eliminar un producto por referencia
-router.delete('/products/:reference', (req, res) => {
+exports.deleteProduct = (req, res) => {
     const reference = req.params.reference;
     db.query('DELETE FROM products WHERE reference = ?', [reference], (err, results) => {
         if (err) {
@@ -69,6 +67,4 @@ router.delete('/products/:reference', (req, res) => {
         }
         res.json({ message: 'Product deleted' });
     });
-});
-
-module.exports = router;
+};
