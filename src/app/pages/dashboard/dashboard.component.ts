@@ -108,6 +108,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     // Establecemos el título de la página
     this.titleService.setTitle('Apple (España) - Panel de Control');
+    // Obtenemos los productos Apple a través de la API
+    this.ProductsService.getProducts();
     // Obtenemos los productos Apple a través del servicio
     this.products = this.ProductsService.productSignal();
   }
