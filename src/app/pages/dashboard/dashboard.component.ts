@@ -110,7 +110,7 @@ export class DashboardComponent implements OnInit {
     this.titleService.setTitle('Apple (España) - Panel de Control');
     // Obtenemos los productos Apple a través de la API
     this.ProductsService.getProducts();
-    // Obtenemos los productos Apple a través del servicio
+    // Obtenemos los productos Apple del servicio
     this.products = this.ProductsService.productSignal();
   }
 
@@ -140,9 +140,9 @@ export class DashboardComponent implements OnInit {
     newProduct.image = newProduct.image.replace(/^.*[\\\/]/, '');
     // Añadimos la ruta de la imagen al objeto de producto
     newProduct.image = './assets/images/' + newProduct.image;
-    // Añadimos el nuevo producto al array de productos
-    this.products.push(newProduct);
-    // Enviamos el nuevo producto al servicio
+    // Añadimos el nuevo producto al servicio
+    this.ProductsService.createProduct(newProduct);
+    // Enviamos el array de productos al servicio
     this.ProductsService.productSignal.set(this.products);
   }
 

@@ -10,7 +10,7 @@ export class ProductsService {
 
   // Array vacío para almacenar los productos Apple
   products: Product[] = [];
-
+  
   // Signal para compartir los productos Apple entre componentes hermanos
   productSignal = signal<Product[]>([]);
 
