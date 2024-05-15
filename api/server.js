@@ -1,20 +1,27 @@
 
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
 require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors());
+app.use(helmet());
 app.use(express.json());
 
-const productsRoutes = require('./routes/productsRoutes');
+const productsRoute = require('./routes/productsRoute');
 
-app.use('/api', productsRoutes);
+app.use('/api', productsRoute);
 
 app.use((req, res) => {
     res.status(404).send('Not Found');
+});
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
 });
 
 app.listen(port, () => {
