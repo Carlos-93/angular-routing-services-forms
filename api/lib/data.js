@@ -1,9 +1,9 @@
-const db = require('../config/db');
+const database = require('../lib/database');
 
 // Método GET para obtener todos los productos
 exports.getAllProducts = async (req, res) => {
     try {
-        const [results] = await db.query('SELECT * FROM products');
+        const [results] = await database.query('SELECT * FROM products');
         res.json(results);
     } catch (err) {
         console.error('Database error:', err);
@@ -15,7 +15,7 @@ exports.getAllProducts = async (req, res) => {
 exports.getProductByReference = async (req, res) => {
     const reference = req.params.reference;
     try {
-        const [results] = await db.query('SELECT * FROM products WHERE reference = ?', [reference]);
+        const [results] = await database.query('SELECT * FROM products WHERE reference = ?', [reference]);
         if (results.length === 0) {
             return res.status(404).json({ error: 'Product not found' });
         }
@@ -30,7 +30,7 @@ exports.getProductByReference = async (req, res) => {
 exports.createProduct = async (req, res) => {
     const productData = req.body;
     try {
-        const [results] = await db.query('INSERT INTO products SET ?', productData);
+        const [results] = await database.query('INSERT INTO products SET ?', productData);
         res.status(201).json({ message: 'Product created', productId: results.insertId });
     } catch (err) {
         console.error('Database error:', err);
@@ -43,7 +43,7 @@ exports.updateProduct = async (req, res) => {
     const reference = req.params.reference;
     const productData = req.body;
     try {
-        const [results] = await db.query('UPDATE products SET ? WHERE reference = ?', [productData, reference]);
+        const [results] = await database.query('UPDATE products SET ? WHERE reference = ?', [productData, reference]);
         if (results.affectedRows === 0) {
             return res.status(404).json({ error: 'Product not found' });
         }
@@ -58,7 +58,7 @@ exports.updateProduct = async (req, res) => {
 exports.deleteProduct = async (req, res) => {
     const reference = req.params.reference;
     try {
-        const [results] = await db.query('DELETE FROM products WHERE reference = ?', [reference]);
+        const [results] = await database.query('DELETE FROM products WHERE reference = ?', [reference]);
         if (results.affectedRows === 0) {
             return res.status(404).json({ error: 'Product not found' });
         }

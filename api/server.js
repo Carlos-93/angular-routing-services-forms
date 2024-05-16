@@ -10,7 +10,7 @@ app.use(cors());
 app.use(helmet());
 app.use(express.json());
 
-const route = require('./routes/productsRoute');
+const route = require('./routes/products');
 
 app.use('/api', route);
 
@@ -18,7 +18,6 @@ app.use((req, res) => {
     res.status(404).send('Not Found');
 });
 
-// Middleware de gestión de errores
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
