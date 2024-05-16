@@ -14,8 +14,10 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  
+
+  products = this.ProductsService.products;
   productForm: FormGroup;
+
   isEditing: boolean = false;
   showPopup: boolean = false;
   popupMessage: string = '';
@@ -37,9 +39,6 @@ export class DashboardComponent implements OnInit {
   product: Product = {
     reference: '', name: '', price: 0, description: '', type: '', offer: false, image: ''
   };
-
-  // Inicializamos el array de productos Apple vacío
-  products: Product[] = [];
 
   referenceStartNumber(): ValidatorFn {
     // Método para comprobar si la referencia del producto introducido empieza por un número
@@ -109,9 +108,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     // Establecemos el título de la página
     this.titleService.setTitle('Apple (España) - Panel de Control');
-    // Obtenemos los productos Apple a través de la API
-    this.ProductsService.getAllProducts();
-    // Obtenemos los productos Apple del servicio
+    // Nos suscribimos a los cambios en el array de productos
     this.products = this.ProductsService.productSignal();
   }
 

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsService } from '../../services/products-service';
-import { Product } from '../../interfaces/product';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -13,8 +12,8 @@ import { Title } from '@angular/platform-browser';
 })
 export class MacComponent {
 
-  // Inicializamos un array vacío para almacenar los productos Apple
-  products: Product[] = [];
+  // Recogemos el array de productos desde el servicio
+  products = this.ProductsService.products;
 
   // Establecemos el título de la página y obtenemos los productos desde el servicio
   constructor(private titleService: Title, private ProductsService: ProductsService) { }
