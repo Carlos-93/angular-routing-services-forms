@@ -108,6 +108,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     // Establecemos el título de la página
     this.titleService.setTitle('Apple (España) - Panel de Control');
+    // Obtenemos los productos Apple desde el servicio
+    this.products = this.ProductsService.productSignal();
   }
 
   onSubmit() {
@@ -136,8 +138,8 @@ export class DashboardComponent implements OnInit {
     newProduct.image = newProduct.image.replace(/^.*[\\\/]/, '');
     // Añadimos la ruta de la imagen al objeto de producto
     newProduct.image = './assets/images/' + newProduct.image;
-    // Añadimos el nuevo producto al array de productos
-    this.products.push(newProduct);
+    // Añadimos el nuevo producto a la base de datos
+    this.ProductsService.createProduct(newProduct);
     // Enviamos el nuevo producto al servicio
     this.ProductsService.productSignal.set(this.products);
   }
