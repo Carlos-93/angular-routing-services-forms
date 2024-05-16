@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { ProductsService } from '../../services/products-service';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -11,8 +12,11 @@ import { Title } from '@angular/platform-browser';
 })
 export class HomeComponent implements OnInit {
 
+  // Recogemos el array de productos desde el servicio
+  products = this.ProductsService.products;
+
   // Inyectamos el servicio Title para usar en el componente
-  constructor(private titleService: Title) { }
+  constructor(private titleService: Title, private ProductsService: ProductsService) { }
 
   // Establecemos el título de la página usando el servicio Title
   ngOnInit() { this.titleService.setTitle('Apple (España) - Inicio'); }

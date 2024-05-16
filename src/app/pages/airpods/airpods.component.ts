@@ -22,9 +22,6 @@ export class AirpodsComponent {
     // Establecemos el título de la página
     this.titleService.setTitle('Apple (España) - Airpods');
 
-    // Obtenemos los productos desde el servicio y los almacenamos
-    this.products = this.ProductsService.productSignal();
-
     // Filtramos los productos para incluir solo aquellos de tipo 'AirPods'
     this.products = this.products.filter(product => product.type === 'AirPods');
 

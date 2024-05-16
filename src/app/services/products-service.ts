@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProductsService {
 
-  // Inicializamos el array de productos Apple
+  // Inicializamos el array para almacenar los productos
   products: Product[] = [];
 
   // Signal para compartir los productos Apple entre componentes hermanos
@@ -17,11 +17,12 @@ export class ProductsService {
   apiURL: string = 'http://localhost:3000/api/products';
 
   // Inyectamos el servicio HttpClient en el constructor
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { this.getAllProducts(); }
 
   getAllProducts() {
     this.http.get<Product[]>(this.apiURL).subscribe((products) => {
+      this.products = products;
       this.productSignal.set(products);
-    })
+    });
   }
 }
