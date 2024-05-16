@@ -15,9 +15,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class DashboardComponent implements OnInit {
   
-  products: Product[] = [];
   productForm: FormGroup;
-
   isEditing: boolean = false;
   showPopup: boolean = false;
   popupMessage: string = '';
@@ -39,6 +37,9 @@ export class DashboardComponent implements OnInit {
   product: Product = {
     reference: '', name: '', price: 0, description: '', type: '', offer: false, image: ''
   };
+
+  // Inicializamos el array de productos Apple vacío
+  products: Product[] = [];
 
   referenceStartNumber(): ValidatorFn {
     // Método para comprobar si la referencia del producto introducido empieza por un número
