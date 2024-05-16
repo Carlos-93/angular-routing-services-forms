@@ -18,9 +18,7 @@ export class ProductsService {
   apiURL: string = 'http://localhost:3000/api/products';
 
   // Inyectamos el servicio HttpClient en el constructor
-  constructor(private http: HttpClient) {
-    this.getAllProducts();
-  }
+  constructor(private http: HttpClient) { this.getAllProducts(); }
 
   // Método GET para obtener todos los productos
   getAllProducts() {

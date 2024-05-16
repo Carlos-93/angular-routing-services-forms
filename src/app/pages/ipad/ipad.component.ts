@@ -22,6 +22,9 @@ export class IpadComponent {
     // Establecemos el título de la página
     this.titleService.setTitle('Apple (España) - iPad');
 
+    // Obtenemos los productos Apple desde el servicio
+    this.products = this.ProductsService.productSignal();
+
     // Filtramos los productos para incluir solo aquellos de tipo 'iPad'
     this.products = this.products.filter(product => product.type === 'iPad');
 

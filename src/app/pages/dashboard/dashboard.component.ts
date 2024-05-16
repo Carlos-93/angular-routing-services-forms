@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule, ValidatorFn, AbstractControl } from '@angular/forms';
 import { ProductsService } from '../../services/products-service';
@@ -22,8 +22,10 @@ export class DashboardComponent implements OnInit {
   showPopup: boolean = false;
   popupMessage: string = '';
 
-  // Establecemos el título de la página y configuramos el formulario de productos Apple con validaciones
   constructor(private titleService: Title, private ProductsService: ProductsService) {
+
+    effect(() => { this.products = this.ProductsService.productSignal(); });
+
     this.productForm = new FormGroup({
       reference: new FormControl('', { validators: [Validators.required, Validators.minLength(1), Validators.maxLength(20), this.referenceStartNumber()] }),
       name: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
@@ -35,17 +37,14 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  // Inicializamos el objeto producto con valores por defecto
   product: Product = {
     reference: '', name: '', price: 0, description: '', type: '', offer: false, image: ''
   };
 
   referenceStartNumber(): ValidatorFn {
-    // Método para comprobar si la referencia del producto introducido empieza por un número
     return (control: AbstractControl): { [key: string]: any } | null => {
-      // Obtenemos la referencia del producto
       const reference = control.value;
-      // Si la referencia no empieza por un número, devolvemos un error
+
       if (reference && !/^[0-9]/.test(reference)) {
         return { 'uniqueReference': { value: control.value } };
       }
@@ -110,6 +109,8 @@ export class DashboardComponent implements OnInit {
     this.titleService.setTitle('Apple (España) - Panel de Control');
     // Obtenemos los productos Apple desde el servicio
     this.products = this.ProductsService.productSignal();
+    // Movemos el scroll al principio de la página
+    window.scrollTo(0, 0);
   }
 
   onSubmit() {
@@ -185,7 +186,6 @@ export class DashboardComponent implements OnInit {
   }
 
   autocompleteForm(product: Product) {
-    // Método para autocompletar el formulario con los datos del producto seleccionado
     this.productForm.setValue({
       reference: product.reference,
       name: product.name,
