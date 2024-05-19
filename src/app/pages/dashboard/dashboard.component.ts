@@ -15,9 +15,8 @@ import { Title } from '@angular/platform-browser';
 })
 export class DashboardComponent implements OnInit {
 
-  productForm: FormGroup;
   products = this.ProductsService.products;
-
+  productForm: FormGroup;
   isEditing: boolean = false;
   showPopup: boolean = false;
   popupMessage: string = '';
@@ -124,6 +123,8 @@ export class DashboardComponent implements OnInit {
     this.titleService.setTitle('Apple (España) - Panel de Control');
     // Obtenemos los productos Apple a través del servicio
     this.products = this.ProductsService.productSignal();
+    // Movemos el scroll al principio de la página
+    window.scrollTo(0, 0);
   }
 
   onSubmit() {
@@ -149,9 +150,7 @@ export class DashboardComponent implements OnInit {
     // Creamos un nuevo producto Apple con los datos del formulario
     const newProduct: Product = this.createProductForm();
     // Eliminamos la ruta del archivo y nos quedamos con el nombre del archivo
-    newProduct.image = newProduct.image.replace(/^.*[\\\/]/, '');
-    // Añadimos la ruta de la imagen al objeto de producto
-    newProduct.image = './assets/images/' + newProduct.image;
+    newProduct.image = './assets/images/' + newProduct.image.replace(/^.*[\\\/]/, '');
     // Añadimos el nuevo producto al array de productos
     this.products.push(newProduct);
     // Enviamos el nuevo producto al servicio
@@ -162,9 +161,7 @@ export class DashboardComponent implements OnInit {
     // Creamos un producto Apple con los datos del formulario
     const updateProduct: Product = this.createProductForm();
     // Eliminamos la ruta del archivo y nos quedamos con el nombre del archivo
-    updateProduct.image = updateProduct.image.replace(/^.*[\\\/]/, '');
-    // Añadimos la ruta de la imagen al objeto de producto
-    updateProduct.image = './assets/images/' + updateProduct.image;
+    updateProduct.image = './assets/images/' + updateProduct.image.replace(/^.*[\\\/]/, '');
     // Obtenemos el índice del producto a actualizar
     const index = this.products.findIndex(product => product.reference === updateProduct.reference);
     // Actualizamos el producto en el array de productos

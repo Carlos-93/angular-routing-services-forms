@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsService } from '../../services/products-service';
-import { Product } from '../../interfaces/product';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -13,7 +12,8 @@ import { Title } from '@angular/platform-browser';
 })
 export class IphoneComponent {
 
-  products: Product[] = [];
+  // Recogemos el array de productos desde el servicio
+  products = this.ProductsService.products;
 
   // Establecemos el título de la página y obtenemos los productos desde el servicio
   constructor(private titleService: Title, private ProductsService: ProductsService) { }
@@ -22,7 +22,7 @@ export class IphoneComponent {
     // Establecemos el título de la página
     this.titleService.setTitle('Apple (España) - iPhone');
 
-    // Obtenemos los productos desde el servicio y los almacenamos
+    // Obtenemos los productos Apple desde el servicio
     this.products = this.ProductsService.productSignal();
 
     // Filtramos los productos para incluir solo aquellos de tipo 'iPhone'

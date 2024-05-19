@@ -40,7 +40,7 @@ export class ProductsService {
       name: 'MacBook Pro M3',
       price: 1999.99,
       description: 'El MacBook Pro M3 es el portátil más potente y avanzado jamás creado por Apple',
-      type: 'Mac',
+      type: 'MacBook',
       offer: false,
       image: './assets/images/macbook-pro-m3.png'
     },
@@ -49,7 +49,7 @@ export class ProductsService {
       name: 'MacBook Air M3',
       price: 999.99,
       description: 'El MacBook Air M3 es el portátil más potente y avanzado jamás creado por Apple',
-      type: 'Mac',
+      type: 'MacBook',
       offer: true,
       image: './assets/images/macbook-air-m3.png'
     },
@@ -58,7 +58,7 @@ export class ProductsService {
       name: 'MacBook Pro M2',
       price: 1499.99,
       description: 'El MacBook Pro M2 es el portátil más potente y avanzado jamás creado por Apple',
-      type: 'Mac',
+      type: 'MacBook',
       offer: false,
       image: './assets/images/macbook-pro-m2.png'
     },
