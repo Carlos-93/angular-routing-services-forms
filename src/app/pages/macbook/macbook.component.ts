@@ -25,7 +25,7 @@ export class MacbookComponent {
     // Obtenemos los productos Apple desde el servicio
     this.products = this.ProductsService.productSignal();
 
-    // Filtramos los productos para incluir solo aquellos de tipo 'Mac'
+    // Filtramos los productos para incluir solo aquellos de tipo 'MacBook'
     this.products = this.products.filter(product => product.type === 'MacBook');
 
     window.scrollTo(0, 0);
