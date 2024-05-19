@@ -62,6 +62,20 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  filterProducts(event: any) {
+    // Método para filtrar los productos Apple por tipo
+    const value = event.target.value;
+    // Si el valor es "Todos los dispositivos", mostramos todos los productos
+    if (value === 'Todos los dispositivos') {
+      this.products = this.ProductsService.productSignal();
+    } else {
+      // Filtramos los productos Apple según el tipo seleccionado
+      this.products = this.ProductsService.productSignal().filter((product: Product) => {
+        return product.type === value;
+      });
+    }
+  }
+
   sortProducts(event: any) {
     // Método para ordenar los productos Apple por precio, nombre o oferta
     const value = event.target.value;
