@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit {
   };
 
   referenceStartNumber(): ValidatorFn {
+    // Método para comprobar si la referencia del producto empieza por un número
     return (control: AbstractControl): { [key: string]: any } | null => {
       const reference = control.value;
 
@@ -98,8 +99,8 @@ export class DashboardComponent implements OnInit {
   }
 
   deleteProduct(index: number) {
-    // Método para eliminar un producto Apple del array de productos
-    this.products.splice(index, 1);
+    // Método para eliminar un producto Apple de la base de datos
+    this.ProductsService.deleteProduct(this.products[index].reference);
     // Enviamos la eliminación del producto al servicio
     this.ProductsService.productSignal.set(this.products);
   }
@@ -136,9 +137,7 @@ export class DashboardComponent implements OnInit {
     // Creamos un nuevo producto Apple con los datos del formulario
     const newProduct: Product = this.createProductForm();
     // Eliminamos la ruta del archivo y nos quedamos con el nombre del archivo
-    newProduct.image = newProduct.image.replace(/^.*[\\\/]/, '');
-    // Añadimos la ruta de la imagen al objeto de producto
-    newProduct.image = './assets/images/' + newProduct.image;
+    newProduct.image = './assets/images/' + newProduct.image.replace(/^.*[\\\/]/, '');
     // Añadimos el nuevo producto a la base de datos
     this.ProductsService.createProduct(newProduct);
     // Enviamos el nuevo producto al servicio
@@ -149,13 +148,9 @@ export class DashboardComponent implements OnInit {
     // Creamos un producto Apple con los datos del formulario
     const updateProduct: Product = this.createProductForm();
     // Eliminamos la ruta del archivo y nos quedamos con el nombre del archivo
-    updateProduct.image = updateProduct.image.replace(/^.*[\\\/]/, '');
-    // Añadimos la ruta de la imagen al objeto de producto
-    updateProduct.image = './assets/images/' + updateProduct.image;
-    // Obtenemos el índice del producto a actualizar
-    const index = this.products.findIndex(product => product.reference === updateProduct.reference);
-    // Actualizamos el producto en el array de productos
-    this.products[index] = updateProduct;
+    updateProduct.image = './assets/images/' + updateProduct.image.replace(/^.*[\\\/]/, '');
+    // Actualizamos el producto de la base de datos
+    this.ProductsService.updateProduct(updateProduct.reference, updateProduct);
     // Enviamos el producto actualizado al servicio
     this.ProductsService.productSignal.set(this.products);
   }
@@ -176,16 +171,18 @@ export class DashboardComponent implements OnInit {
   searchReference() {
     // Buscamos la referencia del producto en el array de productos
     const reference = this.productForm.value.reference;
-    // Comprobamos si la referencia ya existe en el array de productos
-    const product = this.products.find(product => product.reference === reference);
-    // Si la referencia ya existe, completamos el formulario con los datos de ese producto
-    if (product) {
-      this.isEditing = true;
-      this.autocompleteForm(product);
-    }
+    // Comprobamos si la referencia ya existe en la base de datos
+    this.ProductsService.getProductByReference(reference).subscribe(product => {
+      // Si la referencia ya existe, completamos el formulario con los datos de ese producto
+      if (product) {
+        this.isEditing = true;
+        this.autocompleteForm(product);
+      }
+    });
   }
 
   autocompleteForm(product: Product) {
+    // Método para autocompletar el formulario con los datos del producto
     this.productForm.setValue({
       reference: product.reference,
       name: product.name,

@@ -4,13 +4,13 @@ import { ProductsService } from '../../services/products-service';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-mac',
+  selector: 'app-macbook',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './mac.component.html',
-  styleUrls: ['./mac.component.css']
+  templateUrl: './macbook.component.html',
+  styleUrls: ['./macbook.component.css']
 })
-export class MacComponent {
+export class MacbookComponent {
 
   // Recogemos el array de productos desde el servicio
   products = this.ProductsService.products;
@@ -26,7 +26,7 @@ export class MacComponent {
     this.products = this.ProductsService.productSignal();
 
     // Filtramos los productos para incluir solo aquellos de tipo 'Mac'
-    this.products = this.products.filter(product => product.type === 'Mac');
+    this.products = this.products.filter(product => product.type === 'MacBook');
 
     window.scrollTo(0, 0);
   }
