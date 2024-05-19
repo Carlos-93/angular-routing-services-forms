@@ -11,13 +11,26 @@
   <!-- Product List -->
   <section class="flex flex-col items-center gap-14 lg:w-[60rem]">
     <h2 class="md:text-2xl text-xl text-center font-semibold">Dispositivos Apple</h2>
-    <div class="flex flex-col gap-5 text-sm sm:flex-row">
+    <div class="flex flex-col gap-5 text-sm sm:flex-row sm:w-full justify-evenly">
 
       <!-- Search Product -->
       <div class="flex flex-col gap-2 sm:w-[20rem] w-[17rem]">
         <label for="search" class="font-medium">Buscar dispositivo</label>
         <input type="search" id="search" matInput name="search" placeholder="iPhone 15 Pro Max"
           class="p-2 rounded-md border-2" (input)="searchProduct($event)">
+      </div>
+
+      <!-- Filter Product -->
+      <div class="flex flex-col gap-2 w-[15rem]">
+        <label for="filter" class="font-medium">Tipo de dispositivo</label>
+        <select id="filter" name="filter" class="p-2 rounded-md border-2" (change)="filterProducts($event)">
+          <option value="Todos los dispositivos">Todos los dispositivos</option>
+          <option value="MacBook">MacBook</option>
+          <option value="iPad">iPad</option>
+          <option value="iPhone">iPhone</option>
+          <option value="Apple Watch">Watch</option>
+          <option value="AirPods">AirPods</option>
+        </select>
       </div>
 
       <!-- Sort Product -->

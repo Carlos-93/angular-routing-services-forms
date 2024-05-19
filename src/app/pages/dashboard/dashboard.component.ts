@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit {
 
   products = this.ProductsService.products;
   productForm: FormGroup;
-
   isEditing: boolean = false;
   showPopup: boolean = false;
   popupMessage: string = '';
@@ -60,6 +59,20 @@ export class DashboardComponent implements OnInit {
     this.products = this.ProductsService.productSignal().filter((product: Product) => {
       return product.name.toLowerCase().includes(search) || product.reference.toLowerCase().includes(search);
     });
+  }
+
+  filterProducts(event: any) {
+    // Método para filtrar los productos Apple por tipo
+    const value = event.target.value;
+    // Si el valor es "Todos los dispositivos", mostramos todos los productos
+    if (value === 'Todos los dispositivos') {
+      this.products = this.ProductsService.productSignal();
+    } else {
+      // Filtramos los productos Apple según el tipo seleccionado
+      this.products = this.ProductsService.productSignal().filter((product: Product) => {
+        return product.type === value;
+      });
+    }
   }
 
   sortProducts(event: any) {
