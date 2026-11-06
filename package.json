@@ -10,6 +10,7 @@
     "serve:ssr:angular17-routing-services-forms": "node dist/angular17-routing-services-forms/server/server.mjs"
   },
   "private": true,
+  "packageManager": "pnpm@11.2.2",
   "dependencies": {
     "@angular/animations": "17.3.5",
     "@angular/common": "17.3.5",
@@ -22,20 +23,20 @@
     "@angular/router": "17.3.5",
     "@angular/ssr": "17.3.5",
     "express": "4.19.2",
-    "rxjs": "~7.8.1",
+    "rxjs": "~7.8.2",
     "tslib": "2.6.2",
-    "zone.js": "~0.14.4"
+    "zone.js": "~0.14.10"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "17.3.5",
     "@angular/cli": "17.3.5",
     "@angular/compiler-cli": "17.3.5",
     "@types/express": "4.17.21",
-    "@types/jasmine": "~5.1.4",
+    "@types/jasmine": "~5.1.15",
     "@types/node": "20.12.7",
     "autoprefixer": "10.4.19",
     "jasmine-core": "~5.1.2",
-    "karma": "~6.4.3",
+    "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
