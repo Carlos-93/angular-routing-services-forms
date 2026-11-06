@@ -12,7 +12,7 @@
     class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 overflow-y-auto px-3 xl:px-0 w-full xl:w-[80vw]">
     @for (product of products; track product; let i = $index) {
       <article
-        class="flex flex-col gap-5 p-5 w-full h-[30rem] text-sm lg:text-base bg-slate-100 rounded-xl justify-between">
+        class="flex flex-col gap-5 p-5 w-full h-120 text-sm lg:text-base bg-slate-100 rounded-xl justify-between">
         <div class="flex justify-between items-center">
           <!-- Reference number and name of the product -->
           <span class="font-bold text-sm text-gray-400">
@@ -36,7 +36,7 @@
           @if (product.offer) {
             <span class="text-green-600 font-bold">En Oferta</span>
           }
-                <button class="p-1.5 px-4 border-transparent shadow-sm font-medium rounded-md 
+                <button class="p-1.5 px-4 border-transparent shadow-xs font-medium rounded-md 
               text-white bg-rose-600 hover:bg-rose-700">
             Comprar
           </button>

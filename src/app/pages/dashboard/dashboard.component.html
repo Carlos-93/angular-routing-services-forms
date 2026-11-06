@@ -9,19 +9,19 @@
 <!-- Main Content -->
 <main class="flex flex-col lg:flex-row justify-center lg:gap-0 gap-32 pt-14 pb-20 px-3">
   <!-- Product List -->
-  <section class="flex flex-col items-center gap-14 lg:w-[60rem]">
+  <section class="flex flex-col items-center gap-14 lg:w-240">
     <h2 class="md:text-2xl text-xl text-center font-semibold">Dispositivos Apple</h2>
     <div class="flex flex-col gap-5 text-sm sm:flex-row">
 
       <!-- Search Product -->
-      <div class="flex flex-col gap-2 sm:w-[20rem] w-[17rem]">
+      <div class="flex flex-col gap-2 sm:w-[20rem] w-68">
         <label for="search" class="font-medium">Buscar dispositivo</label>
         <input type="search" id="search" matInput name="search" placeholder="iPhone 15 Pro Max"
           class="p-2 rounded-md border-2" (input)="searchProduct($event)">
         </div>
 
         <!-- Filter Product -->
-        <div class="flex flex-col gap-2 w-[15rem]">
+        <div class="flex flex-col gap-2 w-60">
           <label for="filter" class="font-medium">Tipo de dispositivo</label>
           <select id="filter" name="filter" class="p-2 rounded-md border-2" (change)="filterProducts($event)">
             <option value="Todos los dispositivos">Todos los dispositivos</option>
@@ -34,7 +34,7 @@
         </div>
 
         <!-- Sort Product -->
-        <div class="flex flex-col gap-2 w-[12rem]">
+        <div class="flex flex-col gap-2 w-48">
           <label for="sort" class="font-medium">Ordenar por</label>
           <select id="sort" matInput name="sort" class="p-2 rounded-md border-2" (change)="sortProducts($event)">
             <option>Referencia</option>
@@ -49,10 +49,10 @@
 
       <!-- Product Cards -->
       <section
-        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 justify-items-center gap-5 overflow-y-auto pr-2 max-h-[62rem]">
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 justify-items-center gap-5 overflow-y-auto pr-2 max-h-248">
         @for (product of products; track product; let i = $index) {
           <article
-            class="flex flex-col gap-5 p-5 w-full h-[30rem] text-sm lg:text-base bg-slate-100 rounded-xl justify-between">
+            class="flex flex-col gap-5 p-5 w-full h-120 text-sm lg:text-base bg-slate-100 rounded-xl justify-between">
             <div class="flex justify-between items-center">
               <!-- Reference number and name of the product -->
               <p class="font-bold text-base md:text-lg"><span class="text-gray-400 text-sm">{{ product.reference }}</span>
@@ -74,7 +74,7 @@
               @if (product.offer) {
                 <p class="text-green-600 font-bold">En Oferta</p>
               }
-          <button class="p-1.5 px-4 border-transparent shadow-sm font-medium rounded-md 
+          <button class="p-1.5 px-4 border-transparent shadow-xs font-medium rounded-md 
           text-white bg-rose-600 hover:bg-rose-700">
                 Comprar
               </button>
@@ -85,9 +85,9 @@
     </section>
 
     <!-- Product Form -->
-    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="flex flex-col items-center lg:w-[45rem]">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="flex flex-col items-center lg:w-180">
       <h2 class="md:text-2xl text-xl text-center mb-10 font-semibold">Añadir Dispositivo</h2>
-      <div class="flex flex-col gap-5 text-sm sm:w-[28rem]">
+      <div class="flex flex-col gap-5 text-sm sm:w-md">
 
         <!-- Número de referencia -->
         <div class="flex flex-col gap-2">
@@ -197,14 +197,14 @@
               <div class="flex items-center gap-2">
                 <label for="offer" class="font-medium cursor-pointer">Dispositivo en oferta</label>
                 <input id="offer" type="checkbox" formControlName="offer"
-                  class="h-5 w-5 rounded border-2 checked:bg-rose-500 cursor-pointer">
+                  class="h-5 w-5 rounded-sm border-2 checked:bg-rose-500 cursor-pointer">
                 </div>
 
                 <!-- Agregar imagen del dispositivo -->
                 <div class="flex flex-col gap-2">
                   <label for="image" class="font-medium">Imagen</label>
                   <input type="file" id="image" formControlName="image" autocomplete="off" (change)="selectImage($event)"
-                    class="flex w-full text-gray-700 file:rounded-md file:border-gray-300 file:bg-gray-100 file:px-4 file:p-2 file:shadow-sm file:focus:border-rose-600 file:focus:ring-rose-600 cursor-pointer">
+                    class="flex w-full text-gray-700 file:rounded-md file:border-gray-300 file:bg-gray-100 file:px-4 file:p-2 file:shadow-xs file:focus:border-rose-600 file:focus:ring-rose-600 cursor-pointer">
                     <!-- Validación de imagen -->
                     @if (productForm.get('image')?.errors?.['required'] && productForm.get('image')?.touched) {
                       <p
@@ -219,13 +219,13 @@
                   <div class="flex justify-center lg:justify-end items-center pt-5 gap-3">
                     <!-- Botón de envío y edición -->
                     <button type="submit" [disabled]="productForm.invalid"
-                      class="md:p-2.5 md:px-6 p-2 px-4 border-transparent shadow-sm font-medium rounded-md text-white bg-rose-600 hover:bg-rose-700">
+                      class="md:p-2.5 md:px-6 p-2 px-4 border-transparent shadow-xs font-medium rounded-md text-white bg-rose-600 hover:bg-rose-700">
                       {{isEditing? 'Editar Dispositivo' : 'Añadir Dispositivo'}}
                     </button>
 
                     <!-- Botón de limpiar formulario -->
                     <button type="reset"
-                      class="md:p-2.5 md:px-6 p-2 px-4 border-transparent shadow-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700">
+                      class="md:p-2.5 md:px-6 p-2 px-4 border-transparent shadow-xs font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700">
                       Limpiar
                     </button>
                   </div>

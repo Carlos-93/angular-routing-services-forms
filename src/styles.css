@@ -1,8 +1,33 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap");
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap')
+layer(base);
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --background-image-iphone-banner: url('/assets/images/banner-iphone.jpeg');
+  --background-image-macbook-banner: url('/assets/images/banner-macbook.jpeg');
+  --background-image-watch-banner: url('/assets/images/banner-watch.jpeg');
+  --background-image-ipad-banner: url('/assets/images/banner-ipad.jpeg');
+  --background-image-airpods-banner: url('/assets/images/banner-airpods.jpeg');
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 :root {
     --font-primary: "Montserrat", sans-serif;
