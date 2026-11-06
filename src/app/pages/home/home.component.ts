@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
@@ -6,6 +6,7 @@ import { Title } from '@angular/platform-browser';
   selector: 'app-home',
   imports: [RouterModule],
   templateUrl: './home.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {

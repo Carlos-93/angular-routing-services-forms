@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ProductsService } from '../../services/products-service';
 import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-macbook',
   templateUrl: './macbook.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./macbook.component.css']
 })
 export class MacbookComponent {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule, ValidatorFn, AbstractControl } from '@angular/forms';
 import { ProductsService } from '../../services/products-service';
 import { PopupComponent } from '../../components/popup/popup.component';
@@ -9,6 +9,7 @@ import { Title } from '@angular/platform-browser';
   selector: 'app-dashboard',
   imports: [ReactiveFormsModule, PopupComponent],
   templateUrl: './dashboard.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {

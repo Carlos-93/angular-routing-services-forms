@@ -1,10 +1,11 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   imports: [RouterModule],
   templateUrl: './navbar.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {

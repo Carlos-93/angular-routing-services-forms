@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ProductsService } from '../../services/products-service';
 import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-watch',
   templateUrl: './watch.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrls: ['./watch.component.css']
 })
 export class WatchComponent {
