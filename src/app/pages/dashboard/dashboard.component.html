@@ -2,7 +2,7 @@
 <div class="relative w-full">
   <h1
     class="absolute inset-0 hidden lg:flex justify-end items-center mr-[7vw] xl:text-4xl text-2xl font-semibold italic">
-    Panel de Control</h1>
+  Panel de Control</h1>
   <img src="./assets/images/banner-home.webp" alt="Banner Angular 17" class="banner-shadow ml-auto mr-auto w-full">
 </div>
 
@@ -18,183 +18,221 @@
         <label for="search" class="font-medium">Buscar dispositivo</label>
         <input type="search" id="search" matInput name="search" placeholder="iPhone 15 Pro Max"
           class="p-2 rounded-md border-2" (input)="searchProduct($event)">
-      </div>
-
-      <!-- Filter Product -->
-      <div class="flex flex-col gap-2 w-[15rem]">
-        <label for="filter" class="font-medium">Tipo de dispositivo</label>
-        <select id="filter" name="filter" class="p-2 rounded-md border-2" (change)="filterProducts($event)">
-          <option value="Todos los dispositivos">Todos los dispositivos</option>
-          <option value="MacBook">MacBook</option>
-          <option value="iPad">iPad</option>
-          <option value="iPhone">iPhone</option>
-          <option value="Apple Watch">Watch</option>
-          <option value="AirPods">AirPods</option>
-        </select>
-      </div>
-
-      <!-- Sort Product -->
-      <div class="flex flex-col gap-2 w-[12rem]">
-        <label for="sort" class="font-medium">Ordenar por</label>
-        <select id="sort" matInput name="sort" class="p-2 rounded-md border-2" (change)="sortProducts($event)">
-          <option>Referencia</option>
-          <option>Precio Ascendente</option>
-          <option>Precio Descendente</option>
-          <option>Nombre Ascendente</option>
-          <option>Nombre Descendente</option>
-          <option>Dispositivos en Oferta</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Product Cards -->
-    <section
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 justify-items-center gap-5 overflow-y-auto pr-2 max-h-[62rem]">
-      <article *ngFor="let product of products; let i = index"
-        class="flex flex-col gap-5 p-5 w-full h-[30rem] text-sm lg:text-base bg-slate-100 rounded-xl justify-between">
-        <div class="flex justify-between items-center">
-          <!-- Reference number and name of the product -->
-          <p class="font-bold text-base md:text-lg"><span class="text-gray-400 text-sm">{{ product.reference }}</span>
-            <br>
-            <span class="text-rose-600">{{ product.name }}</span>
-          </p>
-          <i class="fa-regular fa-rectangle-xmark text-red-500 text-2xl cursor-pointer transition-colors duration-300 ease-in-out hover:text-red-700"
-            (click)="deleteProduct(i)"></i>
         </div>
-        <!-- Image of the product -->
-        <div class="flex justify-center w-full">
-          <img [src]="product.image" [alt]="product.name">
+
+        <!-- Filter Product -->
+        <div class="flex flex-col gap-2 w-[15rem]">
+          <label for="filter" class="font-medium">Tipo de dispositivo</label>
+          <select id="filter" name="filter" class="p-2 rounded-md border-2" (change)="filterProducts($event)">
+            <option value="Todos los dispositivos">Todos los dispositivos</option>
+            <option value="MacBook">MacBook</option>
+            <option value="iPad">iPad</option>
+            <option value="iPhone">iPhone</option>
+            <option value="Apple Watch">Watch</option>
+            <option value="AirPods">AirPods</option>
+          </select>
         </div>
-        <!-- Description of the product -->
-        <p class="text-justify">{{product.description}}</p>
-        <!-- Price of the product, Offer status and Buy button -->
-        <div class="flex items-end justify-between">
-          <p class="font-semibold">{{product.price}}€</p>
-          <p *ngIf="product.offer" class="text-green-600 font-bold">En Oferta</p>
+
+        <!-- Sort Product -->
+        <div class="flex flex-col gap-2 w-[12rem]">
+          <label for="sort" class="font-medium">Ordenar por</label>
+          <select id="sort" matInput name="sort" class="p-2 rounded-md border-2" (change)="sortProducts($event)">
+            <option>Referencia</option>
+            <option>Precio Ascendente</option>
+            <option>Precio Descendente</option>
+            <option>Nombre Ascendente</option>
+            <option>Nombre Descendente</option>
+            <option>Dispositivos en Oferta</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Product Cards -->
+      <section
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 justify-items-center gap-5 overflow-y-auto pr-2 max-h-[62rem]">
+        @for (product of products; track product; let i = $index) {
+          <article
+            class="flex flex-col gap-5 p-5 w-full h-[30rem] text-sm lg:text-base bg-slate-100 rounded-xl justify-between">
+            <div class="flex justify-between items-center">
+              <!-- Reference number and name of the product -->
+              <p class="font-bold text-base md:text-lg"><span class="text-gray-400 text-sm">{{ product.reference }}</span>
+              <br>
+                <span class="text-rose-600">{{ product.name }}</span>
+              </p>
+              <i class="fa-regular fa-rectangle-xmark text-red-500 text-2xl cursor-pointer transition-colors duration-300 ease-in-out hover:text-red-700"
+              (click)="deleteProduct(i)"></i>
+            </div>
+            <!-- Image of the product -->
+            <div class="flex justify-center w-full">
+              <img [src]="product.image" [alt]="product.name">
+            </div>
+            <!-- Description of the product -->
+            <p class="text-justify">{{product.description}}</p>
+            <!-- Price of the product, Offer status and Buy button -->
+            <div class="flex items-end justify-between">
+              <p class="font-semibold">{{product.price}}€</p>
+              @if (product.offer) {
+                <p class="text-green-600 font-bold">En Oferta</p>
+              }
           <button class="p-1.5 px-4 border-transparent shadow-sm font-medium rounded-md 
           text-white bg-rose-600 hover:bg-rose-700">
-            Comprar
-          </button>
-        </div>
-      </article>
+                Comprar
+              </button>
+            </div>
+          </article>
+        }
+      </section>
     </section>
-  </section>
 
-  <!-- Product Form -->
-  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="flex flex-col items-center lg:w-[45rem]">
-    <h2 class="md:text-2xl text-xl text-center mb-10 font-semibold">Añadir Dispositivo</h2>
-    <div class="flex flex-col gap-5 text-sm sm:w-[28rem]">
+    <!-- Product Form -->
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="flex flex-col items-center lg:w-[45rem]">
+      <h2 class="md:text-2xl text-xl text-center mb-10 font-semibold">Añadir Dispositivo</h2>
+      <div class="flex flex-col gap-5 text-sm sm:w-[28rem]">
 
-      <!-- Número de referencia -->
-      <div class="flex flex-col gap-2">
-        <label for="reference" class="font-medium">Nº Referencia</label>
-        <input type="text" id="reference" formControlName="reference" placeholder="54-001" autocomplete="off"
-          class="p-2 rounded-md border-2" (change)="searchReference()">
-        <!-- Validación de referencia -->
-        <p *ngIf="productForm.get('reference')?.errors?.['required'] && productForm.get('reference')?.touched"
-          class="text-red-600 font-medium">El número de referencia es obligatorio</p>
-        <p *ngIf="productForm.get('reference')?.errors?.['minlength'] && productForm.get('reference')?.touched"
-          class="text-red-600 font-medium">El número de referencia debe tener al menos 1 carácter</p>
-        <p *ngIf="productForm.get('reference')?.errors?.['maxlength'] && productForm.get('reference')?.touched"
-          class="text-red-600 font-medium">El número de referencia no puede tener más de 20 caracteres</p>
-        <!-- Validadcion personalizada de referencia -->
-        <p *ngIf="productForm.get('reference')?.errors?.['uniqueReference'] && productForm.get('reference')?.touched"
-          class="text-red-600 font-medium">El número de referencia debe comenzar por un número</p>
-      </div>
+        <!-- Número de referencia -->
+        <div class="flex flex-col gap-2">
+          <label for="reference" class="font-medium">Nº Referencia</label>
+          <input type="text" id="reference" formControlName="reference" placeholder="54-001" autocomplete="off"
+            class="p-2 rounded-md border-2" (change)="searchReference()">
+            <!-- Validación de referencia -->
+            @if (productForm.get('reference')?.errors?.['required'] && productForm.get('reference')?.touched) {
+              <p
+              class="text-red-600 font-medium">El número de referencia es obligatorio</p>
+            }
+            @if (productForm.get('reference')?.errors?.['minlength'] && productForm.get('reference')?.touched) {
+              <p
+              class="text-red-600 font-medium">El número de referencia debe tener al menos 1 carácter</p>
+            }
+            @if (productForm.get('reference')?.errors?.['maxlength'] && productForm.get('reference')?.touched) {
+              <p
+              class="text-red-600 font-medium">El número de referencia no puede tener más de 20 caracteres</p>
+            }
+            <!-- Validadcion personalizada de referencia -->
+            @if (productForm.get('reference')?.errors?.['uniqueReference'] && productForm.get('reference')?.touched) {
+              <p
+              class="text-red-600 font-medium">El número de referencia debe comenzar por un número</p>
+            }
+          </div>
 
-      <!-- Modelo del dispositivo -->
-      <div class="flex flex-col gap-2">
-        <label for="name" class="font-medium">Modelo</label>
-        <input type="text" id="name" formControlName="name" placeholder="MacBook Pro M3" autocomplete="off"
-          class="p-2 rounded-md border-2">
-        <!-- Validación de modelo -->
-        <p *ngIf="productForm.get('name')?.errors?.['required'] && productForm.get('name')?.touched"
-          class="text-red-600 font-medium">El modelo del dispositivo es obligatorio</p>
-        <p *ngIf="productForm.get('name')?.errors?.['minlength'] && productForm.get('name')?.touched"
-          class="text-red-600 font-medium">El modelo del dispositivo debe tener al menos 3 caracteres</p>
-        <p *ngIf="productForm.get('name')?.errors?.['maxlength'] && productForm.get('name')?.touched"
-          class="text-red-600 font-medium">El modelo del dispositivo no puede tener más de 50 caracteres</p>
-      </div>
+          <!-- Modelo del dispositivo -->
+          <div class="flex flex-col gap-2">
+            <label for="name" class="font-medium">Modelo</label>
+            <input type="text" id="name" formControlName="name" placeholder="MacBook Pro M3" autocomplete="off"
+              class="p-2 rounded-md border-2">
+              <!-- Validación de modelo -->
+              @if (productForm.get('name')?.errors?.['required'] && productForm.get('name')?.touched) {
+                <p
+                class="text-red-600 font-medium">El modelo del dispositivo es obligatorio</p>
+              }
+              @if (productForm.get('name')?.errors?.['minlength'] && productForm.get('name')?.touched) {
+                <p
+                class="text-red-600 font-medium">El modelo del dispositivo debe tener al menos 3 caracteres</p>
+              }
+              @if (productForm.get('name')?.errors?.['maxlength'] && productForm.get('name')?.touched) {
+                <p
+                class="text-red-600 font-medium">El modelo del dispositivo no puede tener más de 50 caracteres</p>
+              }
+            </div>
 
-      <!-- Precio -->
-      <div class="flex flex-col gap-2">
-        <label for="price" class="font-medium">Precio</label>
-        <input type="number" id="price" formControlName="price" placeholder="999.99€" autocomplete="off"
-          class="p-2 rounded-md border-2">
-        <!-- Validación de precio -->
-        <p *ngIf="productForm.get('price')?.errors?.['required'] && productForm.get('price')?.touched"
-          class="text-red-600 font-medium">El precio es obligatorio</p>
-        <p *ngIf="productForm.get('price')?.errors?.['min'] && productForm.get('price')?.touched"
-          class="text-red-600 font-medium">El precio no puede ser negativo</p>
-        <p *ngIf="productForm.get('price')?.errors?.['pattern'] && productForm.get('price')?.touched"
-          class="text-red-600 font-medium">El precio debe ser un número válido con hasta 2 decimales</p>
-      </div>
+            <!-- Precio -->
+            <div class="flex flex-col gap-2">
+              <label for="price" class="font-medium">Precio</label>
+              <input type="number" id="price" formControlName="price" placeholder="999.99€" autocomplete="off"
+                class="p-2 rounded-md border-2">
+                <!-- Validación de precio -->
+                @if (productForm.get('price')?.errors?.['required'] && productForm.get('price')?.touched) {
+                  <p
+                  class="text-red-600 font-medium">El precio es obligatorio</p>
+                }
+                @if (productForm.get('price')?.errors?.['min'] && productForm.get('price')?.touched) {
+                  <p
+                  class="text-red-600 font-medium">El precio no puede ser negativo</p>
+                }
+                @if (productForm.get('price')?.errors?.['pattern'] && productForm.get('price')?.touched) {
+                  <p
+                  class="text-red-600 font-medium">El precio debe ser un número válido con hasta 2 decimales</p>
+                }
+              </div>
 
-      <!-- Descripción -->
-      <div class="flex flex-col gap-2">
-        <label for="description" class="font-medium">Descripción</label>
-        <textarea id="description" formControlName="description" rows="6"
-          placeholder="El iPhone 15 Pro Max es el smartphone más potente y avanzado jamás creado por Apple"
-          autocomplete="off" class="p-2 rounded-md border-2"></textarea>
-        <!-- Validación de descripción -->
-        <p *ngIf="productForm.get('description')?.errors?.['required'] && productForm.get('description')?.touched"
-          class="text-red-600 font-medium">Se requiere descripción</p>
-        <p *ngIf="productForm.get('description')?.errors?.['minlength'] && productForm.get('description')?.touched"
-          class="text-red-600 font-medium">La descripción debe tener al menos 5 caracteres</p>
-        <p *ngIf="productForm.get('description')?.errors?.['maxlength'] && productForm.get('description')?.touched"
-          class="text-red-600 font-medium">La descripción no puede tener más de 500 caracteres</p>
-      </div>
+              <!-- Descripción -->
+              <div class="flex flex-col gap-2">
+                <label for="description" class="font-medium">Descripción</label>
+                <textarea id="description" formControlName="description" rows="6"
+                  placeholder="El iPhone 15 Pro Max es el smartphone más potente y avanzado jamás creado por Apple"
+                autocomplete="off" class="p-2 rounded-md border-2"></textarea>
+                <!-- Validación de descripción -->
+                @if (productForm.get('description')?.errors?.['required'] && productForm.get('description')?.touched) {
+                  <p
+                  class="text-red-600 font-medium">Se requiere descripción</p>
+                }
+                @if (productForm.get('description')?.errors?.['minlength'] && productForm.get('description')?.touched) {
+                  <p
+                  class="text-red-600 font-medium">La descripción debe tener al menos 5 caracteres</p>
+                }
+                @if (productForm.get('description')?.errors?.['maxlength'] && productForm.get('description')?.touched) {
+                  <p
+                  class="text-red-600 font-medium">La descripción no puede tener más de 500 caracteres</p>
+                }
+              </div>
 
-      <!-- Tipo de dispositivo -->
-      <div class="flex flex-col gap-2">
-        <label for="type" class="font-medium">Tipo de dispositivo</label>
-        <select id="type" formControlName="type" autocomplete="off" class="p-2 rounded-md border-2">
-          <option value="" disabled selected>Selecciona el tipo de dispositivo</option>
-          <option value="Mac">MacBook</option>
-          <option value="iPad">iPad</option>
-          <option value="iPhone">iPhone</option>
-          <option value="Watch">Watch</option>
-          <option value="AirPods">AirPods</option>
-        </select>
-        <!-- Validación de tipo de dispositivo -->
-        <p *ngIf="productForm.get('type')?.errors?.['required'] && productForm.get('type')?.touched"
-          class="text-red-600 font-medium">El tipo de dispositivo es obligatorio</p>
-      </div>
+              <!-- Tipo de dispositivo -->
+              <div class="flex flex-col gap-2">
+                <label for="type" class="font-medium">Tipo de dispositivo</label>
+                <select id="type" formControlName="type" autocomplete="off" class="p-2 rounded-md border-2">
+                  <option value="" disabled selected>Selecciona el tipo de dispositivo</option>
+                  <option value="Mac">MacBook</option>
+                  <option value="iPad">iPad</option>
+                  <option value="iPhone">iPhone</option>
+                  <option value="Watch">Watch</option>
+                  <option value="AirPods">AirPods</option>
+                </select>
+                <!-- Validación de tipo de dispositivo -->
+                @if (productForm.get('type')?.errors?.['required'] && productForm.get('type')?.touched) {
+                  <p
+                  class="text-red-600 font-medium">El tipo de dispositivo es obligatorio</p>
+                }
+              </div>
 
-      <!-- Oferta de dispositivo -->
-      <div class="flex items-center gap-2">
-        <label for="offer" class="font-medium cursor-pointer">Dispositivo en oferta</label>
-        <input id="offer" type="checkbox" formControlName="offer"
-          class="h-5 w-5 rounded border-2 checked:bg-rose-500 cursor-pointer">
-      </div>
+              <!-- Oferta de dispositivo -->
+              <div class="flex items-center gap-2">
+                <label for="offer" class="font-medium cursor-pointer">Dispositivo en oferta</label>
+                <input id="offer" type="checkbox" formControlName="offer"
+                  class="h-5 w-5 rounded border-2 checked:bg-rose-500 cursor-pointer">
+                </div>
 
-      <!-- Agregar imagen del dispositivo -->
-      <div class="flex flex-col gap-2">
-        <label for="image" class="font-medium">Imagen</label>
-        <input type="file" id="image" formControlName="image" autocomplete="off" (change)="selectImage($event)"
-          class="flex w-full text-gray-700 file:rounded-md file:border-gray-300 file:bg-gray-100 file:px-4 file:p-2 file:shadow-sm file:focus:border-rose-600 file:focus:ring-rose-600 cursor-pointer">
-        <!-- Validación de imagen -->
-        <p *ngIf="productForm.get('image')?.errors?.['required'] && productForm.get('image')?.touched"
-          class="text-red-600 font-medium">Se requiere un archivo de imagen (JPG, JPEG, PNG)</p>
-        <p *ngIf="productForm.get('image')?.errors?.['pattern'] && productForm.get('image')?.touched"
-          class="text-red-600 font-medium">Tipo de archivo no válido. Sólo se permiten JPG, JPEG y PNG</p>
-      </div>
+                <!-- Agregar imagen del dispositivo -->
+                <div class="flex flex-col gap-2">
+                  <label for="image" class="font-medium">Imagen</label>
+                  <input type="file" id="image" formControlName="image" autocomplete="off" (change)="selectImage($event)"
+                    class="flex w-full text-gray-700 file:rounded-md file:border-gray-300 file:bg-gray-100 file:px-4 file:p-2 file:shadow-sm file:focus:border-rose-600 file:focus:ring-rose-600 cursor-pointer">
+                    <!-- Validación de imagen -->
+                    @if (productForm.get('image')?.errors?.['required'] && productForm.get('image')?.touched) {
+                      <p
+                      class="text-red-600 font-medium">Se requiere un archivo de imagen (JPG, JPEG, PNG)</p>
+                    }
+                    @if (productForm.get('image')?.errors?.['pattern'] && productForm.get('image')?.touched) {
+                      <p
+                      class="text-red-600 font-medium">Tipo de archivo no válido. Sólo se permiten JPG, JPEG y PNG</p>
+                    }
+                  </div>
 
-      <div class="flex justify-center lg:justify-end items-center pt-5 gap-3">
-        <!-- Botón de envío y edición -->
-        <button type="submit" [disabled]="productForm.invalid"
-          class="md:p-2.5 md:px-6 p-2 px-4 border-transparent shadow-sm font-medium rounded-md text-white bg-rose-600 hover:bg-rose-700">
-          {{isEditing? 'Editar Dispositivo' : 'Añadir Dispositivo'}}
-        </button>
+                  <div class="flex justify-center lg:justify-end items-center pt-5 gap-3">
+                    <!-- Botón de envío y edición -->
+                    <button type="submit" [disabled]="productForm.invalid"
+                      class="md:p-2.5 md:px-6 p-2 px-4 border-transparent shadow-sm font-medium rounded-md text-white bg-rose-600 hover:bg-rose-700">
+                      {{isEditing? 'Editar Dispositivo' : 'Añadir Dispositivo'}}
+                    </button>
 
-        <!-- Botón de limpiar formulario -->
-        <button type="reset"
-          class="md:p-2.5 md:px-6 p-2 px-4 border-transparent shadow-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700">
-          Limpiar
-        </button>
-      </div>
-    </div>
-  </form>
-  <!-- Popup de confirmación -->
-  <app-popup *ngIf="showPopup" [message]="popupMessage"></app-popup>
-</main>
+                    <!-- Botón de limpiar formulario -->
+                    <button type="reset"
+                      class="md:p-2.5 md:px-6 p-2 px-4 border-transparent shadow-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700">
+                      Limpiar
+                    </button>
+                  </div>
+                </div>
+              </form>
+              <!-- Popup de confirmación -->
+              @if (showPopup) {
+                <app-popup [message]="popupMessage"></app-popup>
+              }
+            </main>

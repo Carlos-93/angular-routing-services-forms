@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ProductsService } from '../../services/products-service';
 import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-watch',
-  imports: [CommonModule],
   templateUrl: './watch.component.html',
   styleUrls: ['./watch.component.css']
 })

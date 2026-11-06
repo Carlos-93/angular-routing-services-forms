@@ -16,12 +16,14 @@
           <h2 class="mb-6 text-sm font-semibold text-pink-700 uppercase cursor-default">Recursos
           </h2>
           <ul class="text-gray-500 font-medium">
-            <li class="mb-4" *ngFor="let link of resourcesLinks">
-              <a href="{{ link.url }}"
-                class="hover:text-pink-600 transition-all ease-in-out duration-300 text-xs lg:text-sm">
-                {{ link.name }}
-              </a>
-            </li>
+            @for (link of resourcesLinks; track link) {
+              <li class="mb-4">
+                <a href="{{ link.url }}"
+                  class="hover:text-pink-600 transition-all ease-in-out duration-300 text-xs lg:text-sm">
+                  {{ link.name }}
+                </a>
+              </li>
+            }
           </ul>
         </div>
 
@@ -29,12 +31,14 @@
         <div>
           <h2 class="mb-6 text-sm font-semibold text-pink-700 uppercase cursor-default">Sígueme</h2>
           <ul class="text-gray-500 font-medium">
-            <li class="mb-4" *ngFor="let link of trackingLinks">
-              <a href="{{ link.url }}"
-                class="hover:text-pink-600 transition-all ease-in-out duration-300 text-xs lg:text-sm">
-                {{ link.name }}
-              </a>
-            </li>
+            @for (link of trackingLinks; track link) {
+              <li class="mb-4">
+                <a href="{{ link.url }}"
+                  class="hover:text-pink-600 transition-all ease-in-out duration-300 text-xs lg:text-sm">
+                  {{ link.name }}
+                </a>
+              </li>
+            }
           </ul>
         </div>
 
@@ -42,11 +46,13 @@
         <div>
           <h2 class="mb-6 text-sm font-semibold text-pink-700 uppercase cursor-default">Legal</h2>
           <ul class="text-gray-500 font-medium">
-            <li class="mb-4" *ngFor="let legal of legalLinks">
-              <a href="{{ legal.url }}"
-                class="hover:text-pink-600 transition-all ease-in-out duration-300 text-xs lg:text-sm">{{
+            @for (legal of legalLinks; track legal) {
+              <li class="mb-4">
+                <a href="{{ legal.url }}"
+                  class="hover:text-pink-600 transition-all ease-in-out duration-300 text-xs lg:text-sm">{{
                 legal.name }}</a>
-            </li>
+              </li>
+            }
           </ul>
         </div>
       </div>
@@ -63,9 +69,11 @@
 
       <!-- Redes sociales con interpolación -->
       <div class="flex mt-8 justify-center sm:mt-0 gap-5">
-        <a *ngFor="let social of socialLinks" href="{{ social.url }}">
-          <img src="{{ social.icon }}" class="w-6" alt="{{ social.name }} account" />
-        </a>
+        @for (social of socialLinks; track social) {
+          <a href="{{ social.url }}">
+            <img src="{{ social.icon }}" class="w-6" alt="{{ social.name }} account" />
+          </a>
+        }
       </div>
     </div>
   </div>

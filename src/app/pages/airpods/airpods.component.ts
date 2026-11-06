@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ProductsService } from '../../services/products-service';
 import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-airpods',
-  imports: [CommonModule],
   templateUrl: './airpods.component.html',
   styleUrls: ['./airpods.component.css']
 })

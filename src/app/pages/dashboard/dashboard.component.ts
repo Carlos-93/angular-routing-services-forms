@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule, ValidatorFn, AbstractControl } from '@angular/forms';
 import { ProductsService } from '../../services/products-service';
 import { PopupComponent } from '../../components/popup/popup.component';
@@ -8,7 +7,7 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [ReactiveFormsModule, CommonModule, PopupComponent],
+  imports: [ReactiveFormsModule, PopupComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })

@@ -1,43 +1,47 @@
 <!-- iPhone Page -->
 <div class="relative w-full">
-    <h1 class="absolute inset-0 hidden lg:flex justify-end items-center mr-[7vw] xl:text-4xl text-2xl font-semibold italic">iPhone's</h1>
-    <img src="./assets/images/banner-home.webp" alt="Banner Angular 17" class="banner-shadow ml-auto mr-auto w-full">
+  <h1 class="absolute inset-0 hidden lg:flex justify-end items-center mr-[7vw] xl:text-4xl text-2xl font-semibold italic">iPhone's</h1>
+  <img src="./assets/images/banner-home.webp" alt="Banner Angular 17" class="banner-shadow ml-auto mr-auto w-full">
 </div>
 
 <!-- Main Content -->
 <main class="flex flex-col gap-10 py-10 lg:py-20 justify-center sm:items-center sm:w-auto w-full">
-    <h1 class="lg:hidden md:text-3xl text-2xl text-center font-semibold italic">iPhone's</h1>
-    <!-- iPhone Products -->
-    <section
-        class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 overflow-y-auto px-3 xl:px-0 w-full xl:w-[80vw]">
-        <article *ngFor="let product of products; let i = index"
-            class="flex flex-col gap-5 p-5 w-full h-[30rem] text-sm lg:text-base bg-slate-100 rounded-xl justify-between">
-            <div class="flex justify-between items-center">
-                <!-- Reference number and name of the product -->
-                <span class="font-bold text-sm text-gray-400">
-                    {{ product.reference }}
-                </span>
-                <span class="font-bold lg:text-lg text-rose-600">
-                    {{ product.name }}
-                </span>
-            </div>
-            <!-- Image of the product -->
-            <div class="flex justify-center w-full">
-                <img [src]="product.image" [alt]="product.name">
-            </div>
-            <!-- Description of the product -->
-            <span class="text-justify">
-                {{product.description}}
-            </span>
-            <!-- Price of the product, Offer status and Buy button -->
-            <div class="flex items-end justify-between">
-                <span class="font-semibold">{{product.price}}€</span>
-                <span *ngIf="product.offer" class="text-green-600 font-bold">En Oferta</span>
+  <h1 class="lg:hidden md:text-3xl text-2xl text-center font-semibold italic">iPhone's</h1>
+  <!-- iPhone Products -->
+  <section
+    class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 overflow-y-auto px-3 xl:px-0 w-full xl:w-[80vw]">
+    @for (product of products; track product; let i = $index) {
+      <article
+        class="flex flex-col gap-5 p-5 w-full h-[30rem] text-sm lg:text-base bg-slate-100 rounded-xl justify-between">
+        <div class="flex justify-between items-center">
+          <!-- Reference number and name of the product -->
+          <span class="font-bold text-sm text-gray-400">
+            {{ product.reference }}
+          </span>
+          <span class="font-bold lg:text-lg text-rose-600">
+            {{ product.name }}
+          </span>
+        </div>
+        <!-- Image of the product -->
+        <div class="flex justify-center w-full">
+          <img [src]="product.image" [alt]="product.name">
+        </div>
+        <!-- Description of the product -->
+        <span class="text-justify">
+          {{product.description}}
+        </span>
+        <!-- Price of the product, Offer status and Buy button -->
+        <div class="flex items-end justify-between">
+          <span class="font-semibold">{{product.price}}€</span>
+          @if (product.offer) {
+            <span class="text-green-600 font-bold">En Oferta</span>
+          }
                 <button class="p-1.5 px-4 border-transparent shadow-sm font-medium rounded-md 
               text-white bg-rose-600 hover:bg-rose-700">
-                    Comprar
-                </button>
-            </div>
-        </article>
-    </section>
+            Comprar
+          </button>
+        </div>
+      </article>
+    }
+  </section>
 </main>
