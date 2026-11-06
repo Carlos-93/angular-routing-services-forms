@@ -5,7 +5,6 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-airpods',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './airpods.component.html',
   styleUrls: ['./airpods.component.css']

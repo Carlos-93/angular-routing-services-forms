@@ -8,7 +8,6 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true,
   imports: [ReactiveFormsModule, CommonModule, PopupComponent],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']

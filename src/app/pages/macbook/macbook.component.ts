@@ -5,7 +5,6 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-macbook',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './macbook.component.html',
   styleUrls: ['./macbook.component.css']

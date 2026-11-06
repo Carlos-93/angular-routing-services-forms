@@ -5,7 +5,6 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-watch',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './watch.component.html',
   styleUrls: ['./watch.component.css']

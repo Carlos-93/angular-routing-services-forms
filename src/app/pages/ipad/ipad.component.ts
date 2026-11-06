@@ -5,7 +5,6 @@ import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-ipad',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './ipad.component.html',
   styleUrls: ['./ipad.component.css']
