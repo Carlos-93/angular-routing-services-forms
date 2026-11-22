@@ -25,7 +25,5 @@ export class IpadComponent {
 
     // Filtramos los productos para incluir solo aquellos de tipo 'iPad'
     this.products = this.products.filter(product => product.type === 'iPad');
-
-    window.scrollTo(0, 0);
   }
 }

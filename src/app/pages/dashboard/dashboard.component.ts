@@ -122,8 +122,6 @@ export class DashboardComponent implements OnInit {
     this.titleService.setTitle('Apple (España) - Panel de Control');
     // Obtenemos los productos Apple a través del servicio
     this.products = this.ProductsService.productSignal();
-    // Movemos el scroll al principio de la página
-    window.scrollTo(0, 0);
   }
 
   onSubmit() {

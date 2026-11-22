@@ -25,7 +25,5 @@ export class MacbookComponent {
 
     // Filtramos los productos para incluir solo aquellos de tipo 'MacBook'
     this.products = this.products.filter(product => product.type === 'MacBook');
-
-    window.scrollTo(0, 0);
   }
 }

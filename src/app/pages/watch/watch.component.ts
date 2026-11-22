@@ -25,7 +25,5 @@ export class WatchComponent {
 
     // Filtramos los productos para incluir solo aquellos de tipo 'Apple Watch'
     this.products = this.products.filter(product => product.type === 'Apple Watch');
-
-    window.scrollTo(0, 0);
   }
 }
