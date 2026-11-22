@@ -29,7 +29,10 @@
             ],
             "scripts": [],
             "server": "src/main.server.ts",
-            "prerender": true,
+            "outputMode": "server",
+            "security": {
+              "allowedHosts": ["localhost"]
+            },
             "ssr": {
               "entry": "server.ts"
             }
